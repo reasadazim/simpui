@@ -9,8 +9,7 @@
 
     <link href="css/simpicker.css" rel="stylesheet"/>
     <link href="css/simpui.css" rel="stylesheet"/>
-    <script src="js/simpicker.js"></script>
-    <script src="js/simpui.js"></script>
+
 </head>
 <body>
 
@@ -41,6 +40,16 @@
                 <input type="password" id="password" class="simpui-input" placeholder=" " required />
             </div>
             <div class="simpui-error">Password is required</div>
+        </div>
+
+
+        <div class="simpui-form-group">
+            <label for="search" class="simpui-label">Search</label>
+            <div class="simpui-input-wrapper">
+                <svg class="simpui-search-icon" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24"><path fill="currentColor" d="M15.102 16.162a8 8 0 1 1 1.06-1.06l4.618 4.618a.75.75 0 1 1-1.06 1.06zM16.5 10a6.5 6.5 0 1 0-13 0a6.5 6.5 0 0 0 13 0"/></svg>
+                <input type="text" id="search" class="simpui-input" placeholder="Search..." required />
+            </div>
+            <div class="simpui-error">Search keyword is required</div>
         </div>
 
 
@@ -319,6 +328,91 @@
 </div>
 
 
+
+<!-- Toast Message -->
+<div style="margin-top: 2rem;">
+    <button class="simpui-btn dark sm" id="iconDarkBtn" onclick="showToast('Event has been created', 'Sunday, December 03, 2023 at 9:00 AM')">
+        Toast
+    </button>
+</div>
+<div id="toast-container"></div>
+
+
+
+<!-- Single Modal -->
+<button class="simpui-btn dark sm" id="simpui-open-modal-btn">
+    Open Modal
+</button>
+
+
+<div id="simpui-modal-backdrop" class="simpui-dialog-backdrop" style="display:none;" role="dialog" aria-modal="true" aria-labelledby="simpui-dialog-title">
+    <div class="simpui-dialog-panel" tabindex="-1">
+        <button class="simpui-dialog-close" aria-label="Close" id="simpui-close-modal-btn">&times;</button>
+        <div class="simpui-dialog-title" id="simpui-dialog-title">Modal Title</div>
+        <div class="simpui-dialog-desc">This is a SimpUI-style modal dialog implemented in HTML, CSS, and JS.</div>
+        <div>
+            <p>You can put any content here.</p>
+        </div>
+        <div class="simpui-dialog-actions">
+            <button class="simpui-btn secondary" id="simpui-cancel-btn">Cancel</button>
+            <button class="simpui-btn" id="simpui-confirm-btn">Confirm</button>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+
+
+
+
+<!-- Multimodal -->
+
+<button id="simpui-multimodal-open-btn" class="simpui-btn dark sm" style="margin:2rem;">Open Multi-step Modal</button>
+
+<div id="simpui-multimodal-backdrop" class="simpui-multimodal-backdrop" role="dialog" aria-modal="true">
+
+    <!-- Step 1 -->
+    <div class="simpui-multimodal-panel active" data-step="1">
+        <button class="simpui-multimodal-close" onclick="simpuiMultimodalClose()">&times;</button>
+        <div class="simpui-multimodal-title">Step 1</div>
+        <div class="simpui-multimodal-desc">Welcome to the first step of the modal.</div>
+        <div class="simpui-multimodal-actions">
+            <button class="simpui-multimodal-btn secondary" onclick="simpuiMultimodalClose()">Cancel</button>
+            <button class="simpui-multimodal-btn" onclick="simpuiMultimodalNext()">Next</button>
+        </div>
+    </div>
+
+    <!-- Step 2 -->
+    <div class="simpui-multimodal-panel" data-step="2">
+        <button class="simpui-multimodal-close" onclick="simpuiMultimodalClose()">&times;</button>
+        <div class="simpui-multimodal-title">Step 2</div>
+        <div class="simpui-multimodal-desc">This is the second step of the modal.</div>
+        <div class="simpui-multimodal-actions">
+            <button class="simpui-multimodal-btn secondary" onclick="simpuiMultimodalPrev()">Previous</button>
+            <button class="simpui-multimodal-btn" onclick="simpuiMultimodalNext()">Next</button>
+        </div>
+    </div>
+
+    <!-- Step 3 -->
+    <div class="simpui-multimodal-panel" data-step="3">
+        <button class="simpui-multimodal-close" onclick="simpuiMultimodalClose()">&times;</button>
+        <div class="simpui-multimodal-title">Step 3</div>
+        <div class="simpui-multimodal-desc">Final step. Ready to confirm?</div>
+        <div class="simpui-multimodal-actions">
+            <button class="simpui-multimodal-btn secondary" onclick="simpuiMultimodalPrev()">Previous</button>
+            <button class="simpui-multimodal-btn" onclick="simpuiMultimodalConfirm()">Confirm</button>
+        </div>
+    </div>
+</div>
+
+
+
+
+<script src="js/simpicker.js"></script>
+<script src="js/simpui.js"></script>
 
 <script>
     // INIT

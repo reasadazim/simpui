@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Multi-step Modal (Prefixed)</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <style>
+    :root {
+      --simpui-multimodal-bg: #fff;
+      --simpui-multimodal-fg: #111;
+      --simpui-multimodal-shadow: 0 8px 32px rgba(0,0,0,0.16);
+      --simpui-multimodal-radius: 1rem;
+      --simpui-multimodal-backdrop-bg: rgba(0,0,0,0.5);
+    }
+
+    body {
+      font-family: system-ui, sans-serif;
+      margin: 0;
+      background: #f7f7f7;
+    }
+
+    .simpui-multimodal-backdrop {
+      position: fixed;
+      inset: 0;
+      background: var(--simpui-multimodal-backdrop-bg);
+      display: none;
+      align-items: center;
+      justify-content: center;
+      z-index: 1000;
+    }
+
+    .simpui-multimodal-panel {
+      background: var(--simpui-multimodal-bg);
+      color: var(--simpui-multimodal-fg);
+      box-shadow: var(--simpui-multimodal-shadow);
+      border-radius: var(--simpui-multimodal-radius);
+      max-width: 400px;
+      width: 90vw;
+      padding: 2rem 1.5rem 1.5rem 1.5rem;
+      position: relative;
+      display: none;
+      animation: simpui-multimodal-panelPop 0.2s ease;
+    }
+
+    .simpui-multimodal-panel.active {
+      display: block;
+    }
+
+    @keyframes simpui-multimodal-panelPop {
+      from {
+        opacity: 0;
+        transform: translateY(30px) scale(0.95);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+      }
+    }
+
+    .simpui-multimodal-title {
+      font-size: 1.25rem;
+      font-weight: 600;
+      margin-bottom: 0.5rem;
+    }
+
+    .simpui-multimodal-desc {
+      font-size: 1rem;
+      color: #666;
+      margin-bottom: 1.25rem;
+    }
+
+    .simpui-multimodal-close {
+      position: absolute;
+      top: 1rem;
+      right: 1rem;
+      background: none;
+      border: none;
+      font-size: 1.25rem;
+      color: #aaa;
+      cursor: pointer;
+    }
+
+    .simpui-multimodal-actions {
+      display: flex;
+      justify-content: space-between;
+      gap: 0.5rem;
+      margin-top: 1.5rem;
+    }
+
+    .simpui-multimodal-btn {
+      padding: 0.5rem 1rem;
+      border-radius: 0.5rem;
+      border: none;
+      font-size: 1rem;
+      cursor: pointer;
+      background: #111;
+      color: #fff;
+    }
+
+    .simpui-multimodal-btn.secondary {
+      background: #f1f1f1;
+      color: #222;
+    }
+
+    .simpui-multimodal-btn:active {
+      opacity: 0.85;
+    }
+  </style>
+</head>
+<body>
+
+  <button id="simpui-multimodal-open-btn" class="simpui-multimodal-btn" style="margin:2rem;">Open Multi-step Modal</button>
+
+  <div id="simpui-multimodal-backdrop" class="simpui-multimodal-backdrop" role="dialog" aria-modal="true">
+
+    <!-- Step 1 -->
+    <div class="simpui-multimodal-panel active" data-step="1">
+      <button class="simpui-multimodal-close" onclick="simpuiMultimodalClose()">&times;</button>
+      <div class="simpui-multimodal-title">Step 1</div>
+      <div class="simpui-multimodal-desc">Welcome to the first step of the modal.</div>
+      <div class="simpui-multimodal-actions">
+        <button class="simpui-multimodal-btn secondary" onclick="simpuiMultimodalClose()">Cancel</button>
+        <button class="simpui-multimodal-btn" onclick="simpuiMultimodalNext()">Next</button>
+      </div>
+    </div>
+
+    <!-- Step 2 -->
+    <div class="simpui-multimodal-panel" data-step="2">
+      <button class="simpui-multimodal-close" onclick="simpuiMultimodalClose()">&times;</button>
+      <div class="simpui-multimodal-title">Step 2</div>
+      <div class="simpui-multimodal-desc">This is the second step of the modal.</div>
+      <div class="simpui-multimodal-actions">
+        <button class="simpui-multimodal-btn secondary" onclick="simpuiMultimodalPrev()">Previous</button>
+        <button class="simpui-multimodal-btn" onclick="simpuiMultimodalNext()">Next</button>
+      </div>
+    </div>
+
+    <!-- Step 3 -->
+    <div class="simpui-multimodal-panel" data-step="3">
+      <button class="simpui-multimodal-close" onclick="simpuiMultimodalClose()">&times;</button>
+      <div class="simpui-multimodal-title">Step 3</div>
+      <div class="simpui-multimodal-desc">Final step. Ready to confirm?</div>
+      <div class="simpui-multimodal-actions">
+        <button class="simpui-multimodal-btn secondary" onclick="simpuiMultimodalPrev()">Previous</button>
+        <button class="simpui-multimodal-btn" onclick="simpuiMultimodalConfirm()">Confirm</button>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    const multimodalBackdrop = document.getElementById("simpui-multimodal-backdrop");
+    const multimodalPanels = document.querySelectorAll(".simpui-multimodal-panel");
+    let simpuiMultimodalCurrent = 1;
+
+    function simpuiMultimodalOpen() {
+      multimodalBackdrop.style.display = "flex";
+      simpuiMultimodalShowStep(simpuiMultimodalCurrent);
+      document.body.style.overflow = "hidden";
+    }
+
+    function simpuiMultimodalClose() {
+      multimodalBackdrop.style.display = "none";
+      document.body.style.overflow = "";
+      simpuiMultimodalCurrent = 1;
+      simpuiMultimodalShowStep(simpuiMultimodalCurrent);
+    }
+
+    function simpuiMultimodalNext() {
+      if (simpuiMultimodalCurrent < multimodalPanels.length) {
+        simpuiMultimodalCurrent++;
+        simpuiMultimodalShowStep(simpuiMultimodalCurrent);
+      }
+    }
+
+    function simpuiMultimodalPrev() {
+      if (simpuiMultimodalCurrent > 1) {
+        simpuiMultimodalCurrent--;
+        simpuiMultimodalShowStep(simpuiMultimodalCurrent);
+      }
+    }
+
+    function simpuiMultimodalShowStep(step) {
+      multimodalPanels.forEach(panel => {
+        panel.classList.remove("active");
+        if (parseInt(panel.dataset.step) === step) {
+          panel.classList.add("active");
+        }
+      });
+    }
+
+    function simpuiMultimodalConfirm() {
+      alert("Confirmed!");
+      simpuiMultimodalClose();
+    }
+
+    document.getElementById("simpui-multimodal-open-btn").addEventListener("click", simpuiMultimodalOpen);
+
+    // Backdrop close
+    multimodalBackdrop.addEventListener("mousedown", e => {
+      if (e.target === multimodalBackdrop) {
+        simpuiMultimodalClose();
+      }
+    });
+
+    // Escape key close
+    document.addEventListener("keydown", e => {
+      if (multimodalBackdrop.style.display === "flex" && e.key === "Escape") {
+        simpuiMultimodalClose();
+      }
+    });
+  </script>
+</body>
+</html>
