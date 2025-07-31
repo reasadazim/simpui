@@ -1,4 +1,4 @@
-/* SimpUI JS Module: Calendar: Multi-date select mode */
+/* SimpUI JS Module: Calendar: Multi-date, Range, and Disabled Dates */
 function simpickerCalendar(selector, options = {}) {
   const input = document.querySelector(selector);
   if (!input) return;
@@ -9,7 +9,8 @@ function simpickerCalendar(selector, options = {}) {
     time_24hr = false,
     defaultDate = null,
     rtl = false,
-    mode = "single" // <--- add mode option
+    mode = "single", // mode: "single", "multiple", or "range"
+    disable = [] // <--- NEW: Array of disabled dates
   } = options;
 
   const wrapper = document.createElement('div');
@@ -52,7 +53,6 @@ function simpickerCalendar(selector, options = {}) {
   const setBtn = popup.querySelector('.simpicker-set');
   const prevMonthBtn = popup.querySelector('.prevMonth');
   const nextMonthBtn = popup.querySelector('.nextMonth');
-
   const monthContainer = popup.querySelector('.calendar-month');
   const yearContainer = popup.querySelector('.calendar-year');
   const hourContainer = popup.querySelector('.calendar-hour');
@@ -61,12 +61,20 @@ function simpickerCalendar(selector, options = {}) {
 
   const months = ['January','February','March','April','May','June','July','August','September','October','November','December'];
 
-  // Multi-date support
   let selectedDates = [];
   let selectedDate = defaultDate ? parseCustomDate(defaultDate) : new Date();
   if (isNaN(selectedDate)) selectedDate = new Date();
 
-  // If mode multiple, parse defaultDate as comma separated!
+  let rangeDates = [];
+  if (mode === "range" && defaultDate) {
+    const parts = defaultDate.split(",");
+    rangeDates = parts.map(dt => parseCustomDate(dt.trim())).filter(d => !isNaN(d));
+    if (rangeDates.length === 1) {
+      selectedDate = rangeDates[0];
+    } else if (rangeDates.length === 2) {
+      selectedDate = rangeDates[1];
+    }
+  }
   if (mode === "multiple" && defaultDate) {
     selectedDates = defaultDate.split(",").map(dt => parseCustomDate(dt.trim()))
         .filter(d => !isNaN(d));
@@ -165,36 +173,52 @@ function simpickerCalendar(selector, options = {}) {
   function updateInputValue() {
     if (mode === "multiple") {
       input.value = selectedDates.map(formatDate).join(", ");
-    } else {
-      const dd = String(selectedDate.getDate()).padStart(2, '0');
-      const mm = String(selectedDate.getMonth() + 1).padStart(2, '0');
-      const yyyy = selectedDate.getFullYear();
-
-      let h = selectedDate.getHours();
-      let hr = enableTime ? String(h).padStart(2, '0') : '';
-      let min = enableTime ? String(selectedDate.getMinutes()).padStart(2, '0') : '';
-      let ampm = '';
-
-      if (!time_24hr && enableTime) {
-        ampm = h >= 12 ? ' PM' : ' AM';
-        hr = String(h % 12 || 12).padStart(2, '0');
+    } else if (mode === "range") {
+      if (rangeDates.length === 2) {
+        input.value = `${formatDate(rangeDates[0])}, ${formatDate(rangeDates[1])}`;
+      } else if (rangeDates.length === 1) {
+        input.value = `${formatDate(rangeDates[0])}`;
+      } else {
+        input.value = '';
       }
-
-      input.value = enableTime ? `${dd}-${mm}-${yyyy} ${hr}:${min}${ampm}` : `${dd}-${mm}-${yyyy}`;
+    } else {
+      input.value = formatDate(selectedDate);
     }
   }
 
   updateInputValue();
 
+  // --- Disable Dates: Normalize for lookup ---
+  // Accepts "YYYY-MM-DD", "DD-MM-YYYY", or Date objects
+  function normalizeDisableArray(arr) {
+    return arr.map(val => {
+      if (val instanceof Date) {
+        return `${val.getFullYear()}-${String(val.getMonth()+1).padStart(2,'0')}-${String(val.getDate()).padStart(2,'0')}`;
+      }
+      if (/^\d{4}-\d{2}-\d{2}$/.test(val)) return val; // "YYYY-MM-DD"
+      if (/^\d{2}-\d{2}-\d{4}$/.test(val)) { // "DD-MM-YYYY"
+        const [d,m,y] = val.split("-");
+        return `${y}-${m}-${d}`;
+      }
+      return ""; // skip unrecognized
+    });
+  }
+  const disabledDates = normalizeDisableArray(disable);
+
+  function isDisabledDate(d) {
+    const key = `${d.getFullYear()}-${String(d.getMonth()+1).padStart(2,'0')}-${String(d.getDate()).padStart(2,'0')}`;
+    return disabledDates.includes(key);
+  }
+
   createCalendarDropdown(monthContainer, 'month', months, selectedDate.getMonth(), (i) => {
-    selectedDate.setMonth(i);
-    renderCalendar(selectedDate);
+    viewDate.setMonth(i);
+    renderCalendar(viewDate);
   });
 
   const yearList = Array.from({ length: 131 }, (_, i) => 1970 + i).map(String);
   createCalendarDropdown(yearContainer, 'year', yearList, selectedDate.getFullYear() - 1970, (i) => {
-    selectedDate.setFullYear(1970 + i);
-    renderCalendar(selectedDate);
+    viewDate.setFullYear(1970 + i);
+    renderCalendar(viewDate);
   });
 
   if (enableTime) {
@@ -216,15 +240,25 @@ function simpickerCalendar(selector, options = {}) {
 
   function ymdEqual(a, b) {
     return (
-      a &&
-      b &&
+      a && b &&
       a.getFullYear() === b.getFullYear() &&
       a.getMonth() === b.getMonth() &&
       a.getDate() === b.getDate()
     );
   }
+  function isDateInRange(d, start, end) {
+    if (!start || !end) return false;
+    const dt = new Date(d.getFullYear(), d.getMonth(), d.getDate()).getTime();
+    const st = new Date(start.getFullYear(), start.getMonth(), start.getDate()).getTime();
+    const et = new Date(end.getFullYear(), end.getMonth(), end.getDate()).getTime();
+    return st < et ? (dt > st && dt < et) : (dt > et && dt < st);
+  }
+
+  // --- Calendar view state ---
+  let viewDate = new Date(selectedDate);
 
   function renderCalendar(date) {
+    // Always use viewDate for rendering
     const year = date.getFullYear();
     const month = date.getMonth();
     const daysInMonth = new Date(year, month + 1, 0).getDate();
@@ -252,8 +286,8 @@ function simpickerCalendar(selector, options = {}) {
       div.className = 'day dimmed';
       div.textContent = day;
       div.addEventListener('click', () => {
-        selectedDate = new Date(year, month - 1, day, selectedDate.getHours(), selectedDate.getMinutes());
-        renderCalendar(selectedDate);
+        viewDate.setMonth(viewDate.getMonth() - 1);
+        renderCalendar(viewDate);
       });
       calendarGrid.appendChild(div);
     }
@@ -263,70 +297,111 @@ function simpickerCalendar(selector, options = {}) {
       const div = document.createElement('div');
       div.className = 'day';
       div.textContent = day;
+      const thisDate = new Date(year, month, day, 0, 0, 0, 0);
 
-      // Multi-select highlight logic
+      // --- DISABLED LOGIC ---
+      let isDisabled = isDisabledDate(thisDate);
+      if (isDisabled) div.classList.add('disabled');
+      // Add a cross (x) svg over the cell
+      if (isDisabled) {
+        div.innerHTML = `
+          <span class="simpicker-disabled-date">${day}</span>
+          <span class="simpicker-disabled-icon">
+            <svg width="24" height="24" viewBox="0 0 12 12">
+              <line x1="2" y1="2" x2="10" y2="10" stroke="#d00" stroke-width="1"/>
+              <line x1="10" y1="2" x2="2" y2="10" stroke="#d00" stroke-width="1"/>
+            </svg>
+          </span>
+        `;
+      }
+
       let isMultiSelected = false;
       if (mode === "multiple") {
         isMultiSelected = selectedDates.some(selDate =>
-          selDate.getFullYear() === year &&
-          selDate.getMonth() === month &&
-          selDate.getDate() === day
+          ymdEqual(thisDate, selDate)
         );
       }
-      const isSelected = (
-        year === selectedDate.getFullYear() &&
-        month === selectedDate.getMonth() &&
-        day === selectedDate.getDate()
-      );
-      const isToday = (
-        year === today.getFullYear() &&
-        month === today.getMonth() &&
-        day === today.getDate()
-      );
+      const isSelected = ymdEqual(thisDate, selectedDate);
+      const isToday = ymdEqual(thisDate, today);
 
-      if (mode === "multiple" && isMultiSelected) {
+      // --- Range Mode Highlight Logic ---
+      let isRangeStart = false, isRangeEnd = false, isInRange = false;
+      if (mode === "range" && rangeDates.length >= 1) {
+        if (rangeDates[0] && ymdEqual(thisDate, rangeDates[0])) isRangeStart = true;
+        if (rangeDates[1] && ymdEqual(thisDate, rangeDates[1])) isRangeEnd = true;
+        if (rangeDates.length === 2 && isDateInRange(thisDate, rangeDates[0], rangeDates[1])) isInRange = true;
+      }
+
+      if (mode === "range") {
+        if (isRangeStart) div.classList.add('selected', 'range-start');
+        if (isRangeEnd) div.classList.add('selected', 'range-end');
+        if (isInRange) div.classList.add('in-range');
+      } else if (mode === "multiple" && isMultiSelected) {
         div.classList.add('selected');
-      } else if (isSelected && mode !== "multiple") {
+      } else if (isSelected && mode !== "multiple" && mode !== "range") {
         div.classList.add('selected');
       }
       if (isToday) div.classList.add('today');
 
-      div.addEventListener('click', function () {
-        if (mode === "multiple") {
-          // Build the clicked date object from this cell and dropdowns
-          let h = enableTime ? parseInt(dropdownRefs.hour.triggerText.textContent, 10) : 0;
-          let m = enableTime ? parseInt(dropdownRefs.minute.triggerText.textContent, 10) : 0;
-          if (enableTime && !time_24hr) {
-            const ampm = dropdownRefs.ampm.triggerText.textContent;
-            if (ampm === 'PM' && h !== 12) h += 12;
-            if (ampm === 'AM' && h === 12) h = 0;
-          }
-          let clickedDate = new Date(year, month, day, h, m, 0, 0);
+      // --- Clicking disabled dates is not allowed ---
+      if (!isDisabled) {
+        div.addEventListener('click', function () {
+          if (mode === "multiple") {
+            let h = enableTime ? parseInt(dropdownRefs.hour.triggerText.textContent, 10) : 0;
+            let m = enableTime ? parseInt(dropdownRefs.minute.triggerText.textContent, 10) : 0;
+            if (enableTime && !time_24hr) {
+              const ampm = dropdownRefs.ampm.triggerText.textContent;
+              if (ampm === 'PM' && h !== 12) h += 12;
+              if (ampm === 'AM' && h === 12) h = 0;
+            }
+            let clickedDate = new Date(year, month, day, h, m, 0, 0);
 
-          let alreadyIdx = selectedDates.findIndex(d => ymdEqual(d, clickedDate));
+            let alreadyIdx = selectedDates.findIndex(d => ymdEqual(d, clickedDate));
+            if (
+              selectedDates.length === 1 &&
+              !ymdEqual(selectedDates[0], clickedDate) &&
+              input.hasAttribute("data-default")
+            ) {
+              selectedDates = [clickedDate];
+              input.removeAttribute("data-default");
+            } else if (alreadyIdx > -1) {
+              selectedDates.splice(alreadyIdx, 1); // remove (toggle off)
+            } else {
+              selectedDates.push(clickedDate); // add (toggle on)
+            }
 
-          // If exactly one date, and it's a default date, and not the clicked one, replace
-          if (
-            selectedDates.length === 1 &&
-            !ymdEqual(selectedDates[0], clickedDate) &&
-            input.hasAttribute("data-default")
-          ) {
-            selectedDates = [clickedDate];
-            input.removeAttribute("data-default");
-          } else if (alreadyIdx > -1) {
-            selectedDates.splice(alreadyIdx, 1); // remove (toggle off)
+            updateInputValue();
+            selectedDate = clickedDate;
+            renderCalendar(viewDate);
+          } else if (mode === "range") {
+            let h = enableTime ? parseInt(dropdownRefs.hour.triggerText.textContent, 10) : 0;
+            let m = enableTime ? parseInt(dropdownRefs.minute.triggerText.textContent, 10) : 0;
+            if (enableTime && !time_24hr) {
+              const ampm = dropdownRefs.ampm.triggerText.textContent;
+              if (ampm === 'PM' && h !== 12) h += 12;
+              if (ampm === 'AM' && h === 12) h = 0;
+            }
+            let clickedDate = new Date(year, month, day, h, m, 0, 0);
+
+            if (rangeDates.length === 0 || rangeDates.length === 2) {
+              rangeDates = [clickedDate];
+            } else if (rangeDates.length === 1) {
+              if (clickedDate < rangeDates[0]) {
+                rangeDates = [clickedDate, rangeDates[0]];
+              } else {
+                rangeDates = [rangeDates[0], clickedDate];
+              }
+            }
+            updateInputValue();
+            selectedDate = clickedDate;
+            viewDate = new Date(clickedDate);
+            renderCalendar(viewDate);
           } else {
-            selectedDates.push(clickedDate); // add (toggle on)
+            selectedDate.setDate(day);
+            renderCalendar(viewDate);
           }
-
-          updateInputValue();
-          selectedDate = clickedDate;
-          renderCalendar(selectedDate);
-        } else {
-          selectedDate.setDate(day);
-          renderCalendar(selectedDate);
-        }
-      });
+        });
+      }
 
       calendarGrid.appendChild(div);
     }
@@ -340,21 +415,21 @@ function simpickerCalendar(selector, options = {}) {
       div.className = 'day dimmed';
       div.textContent = i;
       div.addEventListener('click', () => {
-        selectedDate = new Date(year, month + 1, i, selectedDate.getHours(), selectedDate.getMinutes());
-        renderCalendar(selectedDate);
+        viewDate.setMonth(viewDate.getMonth() + 1);
+        renderCalendar(viewDate);
       });
       calendarGrid.appendChild(div);
     }
 
-    dropdownRefs.month.triggerText.textContent = months[selectedDate.getMonth()];
-    dropdownRefs.year.triggerText.textContent = selectedDate.getFullYear();
+    dropdownRefs.month.triggerText.textContent = months[viewDate.getMonth()];
+    dropdownRefs.year.triggerText.textContent = viewDate.getFullYear();
   }
 
   function parseCustomDate(str) {
-    const parts = str.match(/(\d{2})-(\d{2})-(\d{4}) (\d{1,2}):(\d{2})\s*(AM|PM)?/);
+    if (str instanceof Date) return str;
+    const parts = typeof str === "string" && str.match(/(\d{2})-(\d{2})-(\d{4}) (\d{1,2}):(\d{2})\s*(AM|PM)?/);
     if (!parts) {
-      // Try parse without time
-      const dateOnly = str.match(/(\d{2})-(\d{2})-(\d{4})/);
+      const dateOnly = typeof str === "string" && str.match(/(\d{2})-(\d{2})-(\d{4})/);
       if (!dateOnly) return new Date();
       let [_, d, m, y] = dateOnly;
       return new Date(+y, +m - 1, +d, 0, 0);
@@ -370,7 +445,12 @@ function simpickerCalendar(selector, options = {}) {
 
   input.addEventListener('click', () => {
     popup.style.display = 'block';
-    renderCalendar(selectedDate);
+    viewDate = (mode === "range" && rangeDates.length)
+      ? rangeDates[rangeDates.length-1]
+      : (mode === "multiple" && selectedDates.length)
+        ? selectedDates[selectedDates.length-1]
+        : selectedDate;
+    renderCalendar(viewDate);
   });
 
   setBtn.addEventListener('click', () => {
@@ -384,13 +464,15 @@ function simpickerCalendar(selector, options = {}) {
       }
       if (mode === "multiple") {
         for (let i = 0; i < selectedDates.length; i++) {
-          if (
-            selectedDates[i].getFullYear() === selectedDate.getFullYear() &&
-            selectedDates[i].getMonth() === selectedDate.getMonth() &&
-            selectedDates[i].getDate() === selectedDate.getDate()
-          ) {
+          if (ymdEqual(selectedDates[i], selectedDate)) {
             selectedDates[i].setHours(h, m, 0);
           }
+        }
+      } else if (mode === "range") {
+        if (rangeDates.length === 1) {
+          rangeDates[0].setHours(h, m, 0);
+        } else if (rangeDates.length === 2) {
+          rangeDates[1].setHours(h, m, 0);
         }
       } else {
         selectedDate.setHours(h, m, 0);
@@ -401,13 +483,13 @@ function simpickerCalendar(selector, options = {}) {
   });
 
   prevMonthBtn.addEventListener('click', () => {
-    selectedDate.setMonth(selectedDate.getMonth() - 1);
-    renderCalendar(selectedDate);
+    viewDate.setMonth(viewDate.getMonth() - 1);
+    renderCalendar(viewDate);
   });
 
   nextMonthBtn.addEventListener('click', () => {
-    selectedDate.setMonth(selectedDate.getMonth() + 1);
-    renderCalendar(selectedDate);
+    viewDate.setMonth(viewDate.getMonth() + 1);
+    renderCalendar(viewDate);
   });
 
   document.addEventListener('mousedown', (e) => {
@@ -422,7 +504,6 @@ function simpickerCalendar(selector, options = {}) {
   });
 }
 
-
 // Dropdowns
 document.addEventListener("DOMContentLoaded", function () {
   const calendarSelects = document.querySelectorAll(".simpui-calendar-select");
@@ -432,19 +513,15 @@ document.addEventListener("DOMContentLoaded", function () {
     const options = select.querySelector(".simpui-options");
     const hiddenInput = select.parentElement.querySelector("input[type='hidden']");
 
-    // Open dropdown on click anywhere on .simpui-calendar-select
     select.addEventListener("click", function (e) {
-      // Prevent double toggling if click is inside trigger
       if (!select.classList.contains("open")) {
         select.classList.add("open");
-        // Optionally close other open dropdowns
         document.querySelectorAll(".simpui-calendar-select.open").forEach(s => {
           if (s !== select) s.classList.remove("open");
         });
       }
     });
 
-    // Option selection
     options.querySelectorAll(".simpui-option").forEach(option => {
       option.addEventListener("click", function (e) {
         trigger.querySelector('.simpui-selected-text').textContent = this.textContent;
@@ -454,7 +531,6 @@ document.addEventListener("DOMContentLoaded", function () {
       });
     });
 
-    // Close dropdown when clicking outside .simpui-calendar-select
     document.addEventListener("click", function (e) {
       if (!select.contains(e.target)) {
         select.classList.remove("open");

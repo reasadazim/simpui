@@ -317,3 +317,44 @@ span.simpui-selected-text {
   background: #007bff;
   color: #fff;
 }
+
+
+
+
+
+
+
+
+
+
+
+.simpicker-calendar .day.disabled {
+  /*color: #ccc;*/
+  /*background: #f9f9f9;*/
+  position: relative;
+  cursor: not-allowed;
+  pointer-events: none;
+  /*opacity: 0.7;*/
+}
+.simpicker-calendar .simpicker-disabled-icon {
+    position: absolute;
+    top: 2px;
+    right: 3px;
+    pointer-events: none;
+    z-index: 2;
+    opacity: 0.4;
+}
+.simpicker-calendar .simpicker-disabled-date {
+  opacity: 0.7;
+}
+
+
+
+.simpicker-calendar .weekday.weekend {
+  color: #e53935 !important;
+  font-weight: bold;
+}
+.simpicker-calendar .day.weekend {
+  color: #e53935 !important;
+  font-weight: bold;
+}

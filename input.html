@@ -292,8 +292,10 @@
         enableTime: true,
         time_24hr: false,
         defaultDate: "27-07-2025 10:30 AM",
-        mode: "multiple",
+        // mode: "multiple",
         // mode: "range",
+        disable: ["2025-01-30", "2025-02-21", "2025-03-08", new Date(2025, 4, 9)],
+        // weekend:['Sat', 'Sun']
     });
 
     simpickerCalendar("#rtl_picker", {
