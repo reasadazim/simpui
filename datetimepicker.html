@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>SimPicker</title>
+  <link href="//simpui.reasadazim.com/css/simpicker.css" rel="stylesheet"/>
+  <script src="//simpui.reasadazim.com/js/simpicker.js"></script>
+</head>
+<body>
+
+<!-- Example inputs for testing multiple pickers -->
+<input type="text" id="edit_last_contact_datetime" placeholder="dd-mm-yyyy hh:mm AM/PM" readonly>
+<br><br>
+<input type="text" id="rtl_picker" placeholder="RTL Picker (dd-mm-yyyy)" readonly>
+
+<script>
+// INIT
+simpicker("#edit_last_contact_datetime", {
+  enableTime: true,
+  time_24hr: false,
+  defaultDate: "27-07-2025 10:30 AM"
+});
+
+simpicker("#rtl_picker", {
+  enableTime: false,
+  rtl: true
+});
+</script>
+
+</body>
+</html>

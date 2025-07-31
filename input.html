@@ -1,0 +1,307 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>SimPicker</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Geist:wght@100..900&display=swap" rel="stylesheet">
+
+    <link href="css/simpicker.css" rel="stylesheet"/>
+    <link href="css/simpui.css" rel="stylesheet"/>
+    <script src="js/simpicker.js"></script>
+    <script src="js/simpui.js"></script>
+</head>
+<body>
+
+<form>
+    <div class="simpui-form">
+
+        <div class="simpui-form-group">
+            <label for="name" class="simpui-label">Name</label>
+            <input type="text" id="name" class="simpui-input" placeholder=" " required />
+            <div class="simpui-error">Name is required</div>
+        </div>
+
+
+        <div class="simpui-form-group">
+          <label for="username" class="simpui-label">Username</label>
+          <div class="simpui-input-wrapper">
+              <svg class="simpui-input-icon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path fill="currentColor" d="M4 22a8 8 0 1 1 16 0h-2a6 6 0 0 0-12 0zm8-9c-3.315 0-6-2.685-6-6s2.685-6 6-6s6 2.685 6 6s-2.685 6-6 6m0-2c2.21 0 4-1.79 4-4s-1.79-4-4-4s-4 1.79-4 4s1.79 4 4 4"/></svg>
+            <input type="text" id="username" class="simpui-input" placeholder=" " required />
+          </div>
+          <div class="simpui-error">Username is required</div>
+        </div>
+
+
+        <div class="simpui-form-group">
+          <label for="password" class="simpui-label">Password</label>
+          <div class="simpui-input-wrapper">
+              <svg class="simpui-input-icon" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16"><path fill="currentColor" d="M3 8.5a1 1 0 1 0 0-2a1 1 0 0 0 0 2"/><path fill="currentColor" fill-rule="evenodd" d="M4.5 3c1.56 0 2.94.794 3.75 2h5.26a1 1 0 0 1 .807.409l1.49 2.04a.99.99 0 0 1 .033 1.13l-1.26 1.95a.997.997 0 0 1-1.41.276L12.02 10l-1.19.812a1 1 0 0 1-1.13 0L8.51 10h-.258c-.808 1.21-2.18 2-3.75 2a4.5 4.5 0 0 1 0-9zm3.75 6a1 1 0 0 0-.832.444c-.63.94-1.7 1.56-2.91 1.56c-1.93 0-3.5-1.57-3.5-3.5s1.57-3.5 3.5-3.5c1.21 0 2.28.616 2.91 1.56c.186.277.498.444.832.444h5.26L15 8.048l-1.26 1.95l-1.15-.805a1 1 0 0 0-1.14-.005L10.26 10l-1.19-.812a1 1 0 0 0-.566-.175h-.258z" clip-rule="evenodd"/></svg>
+            <input type="password" id="password" class="simpui-input" placeholder=" " required />
+          </div>
+          <div class="simpui-error">Password is required</div>
+        </div>
+
+
+
+
+        <div class="simpui-form-group">
+            <label for="age" class="simpui-label">Age</label>
+            <input type="number" id="age" class="simpui-input" placeholder=" " required />
+            <div class="simpui-error">Age is required</div>
+        </div>
+
+        <div class="simpui-form-group">
+            <label for="bio" class="simpui-label">Short Bio</label>
+            <textarea id="bio" class="simpui-textarea" placeholder=" " required></textarea>
+
+            <div class="simpui-error">Bio is required</div>
+        </div>
+
+        <div class="simpui-form-group">
+            <label for="email" class="simpui-label">Email Address</label>
+            <input type="email" id="email" class="simpui-input" placeholder=" " required />
+            <div class="simpui-error">Please enter a valid email address</div>
+        </div>
+
+        <div class="simpui-form-group">
+          <label for="dateti" class="simpui-label">Last Contact Datetime</label>
+          <div class="simpui-input-wrapper simpui-has-icon-right">
+            <input type="text" id="edit_last_contact_datetime" class="simpui-input" placeholder="Last Contact Datetime" required />
+            <svg class="simpui-input-icon-right" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path fill="currentColor" d="M17 14a1 1 0 1 0 0-2a1 1 0 0 0 0 2m0 4a1 1 0 1 0 0-2a1 1 0 0 0 0 2m-4-5a1 1 0 1 1-2 0a1 1 0 0 1 2 0m0 4a1 1 0 1 1-2 0a1 1 0 0 1 2 0m-6-3a1 1 0 1 0 0-2a1 1 0 0 0 0 2m0 4a1 1 0 1 0 0-2a1 1 0 0 0 0 2"/><path fill="currentColor" fill-rule="evenodd" d="M7 1.75a.75.75 0 0 1 .75.75v.763c.662-.013 1.391-.013 2.193-.013h4.113c.803 0 1.532 0 2.194.013V2.5a.75.75 0 0 1 1.5 0v.827q.39.03.739.076c1.172.158 2.121.49 2.87 1.238c.748.749 1.08 1.698 1.238 2.87c.153 1.14.153 2.595.153 4.433v2.112c0 1.838 0 3.294-.153 4.433c-.158 1.172-.49 2.121-1.238 2.87c-.749.748-1.698 1.08-2.87 1.238c-1.14.153-2.595.153-4.433.153H9.945c-1.838 0-3.294 0-4.433-.153c-1.172-.158-2.121-.49-2.87-1.238c-.748-.749-1.08-1.698-1.238-2.87c-.153-1.14-.153-2.595-.153-4.433v-2.112c0-1.838 0-3.294.153-4.433c.158-1.172.49-2.121 1.238-2.87c.749-.748 1.698-1.08 2.87-1.238q.35-.046.739-.076V2.5A.75.75 0 0 1 7 1.75M5.71 4.89c-1.005.135-1.585.389-2.008.812S3.025 6.705 2.89 7.71q-.034.255-.058.539h18.336q-.024-.284-.058-.54c-.135-1.005-.389-1.585-.812-2.008s-1.003-.677-2.009-.812c-1.027-.138-2.382-.14-4.289-.14h-4c-1.907 0-3.261.002-4.29.14M2.75 12c0-.854 0-1.597.013-2.25h18.474c.013.653.013 1.396.013 2.25v2c0 1.907-.002 3.262-.14 4.29c-.135 1.005-.389 1.585-.812 2.008s-1.003.677-2.009.812c-1.027.138-2.382.14-4.289.14h-4c-1.907 0-3.261-.002-4.29-.14c-1.005-.135-1.585-.389-2.008-.812s-.677-1.003-.812-2.009c-.138-1.027-.14-2.382-.14-4.289z" clip-rule="evenodd"/></svg>
+          </div>
+          <div class="simpui-error">This field is required</div>
+        </div>
+
+
+        <div class="simpui-form-group">
+            <label for="photo" class="simpui-label">Upload File</label>
+            <input type="file" id="photo" class="simpui-file" accept="image/*" />
+            <div class="simpui-file-label" id="photo-label">
+            <span class="simpui-file-icon" aria-hidden="true">
+                  <!-- SVG file icon (static, does not change) -->
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.7" d="M3 17V7.2c0-1.12 0-1.68.218-2.108c.192-.377.497-.682.874-.874C4.52 4 5.08 4 6.2 4h11.6c1.12 0 1.68 0 2.108.218a2 2 0 0 1 .874.874c.218.427.218.987.218 2.105v9.606c0 .485 0 .865-.018 1.174M3 17c0 .988.013 1.506.218 1.907c.192.377.497.683.874.875c.427.218.987.218 2.105.218h11.607c1.118 0 1.677 0 2.104-.218c.376-.192.682-.498.874-.875c.123-.242.177-.526.2-.93M3 17l4.768-5.562l.001-.002c.423-.493.635-.74.886-.83a1 1 0 0 1 .681.005c.25.093.46.343.876.843l2.671 3.205c.386.464.58.696.816.79a1 1 0 0 0 .651.028c.244-.072.46-.287.889-.716l.497-.497c.437-.438.656-.656.904-.728a1 1 0 0 1 .659.037c.238.099.431.34.818.822l2.865 3.582m0 0L21 18m-6-8a1 1 0 1 1 0-2a1 1 0 0 1 0 2"/></svg>
+            </span>
+                <span id="photo-label-text">No file chosen</span>
+            </div>
+        </div>
+
+        <div class="simpui-form-group">
+            <label for="documents" class="simpui-label">Upload File (Multiple)</label>
+            <input type="file" id="documents" class="simpui-file" multiple />
+            <label for="documents" class="simpui-file-label">
+            <span class="simpui-file-icon" aria-hidden="true">
+                <!-- Static file icon SVG -->
+                <svg xmlns="http://www.w3.org/2000/svg" width="512" height="512" viewBox="0 0 512 512"><path fill="none" stroke="currentColor" stroke-linejoin="round" stroke-width="32" d="M432 112V96a48.14 48.14 0 0 0-48-48H64a48.14 48.14 0 0 0-48 48v256a48.14 48.14 0 0 0 48 48h16"/><rect width="400" height="336" x="96" y="128" fill="none" stroke="currentColor" stroke-linejoin="round" stroke-width="32" rx="45.99" ry="45.99"/><ellipse cx="372.92" cy="219.64" fill="none" stroke="currentColor" stroke-miterlimit="10" stroke-width="32" rx="30.77" ry="30.55"/><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="32" d="M342.15 372.17L255 285.78a30.93 30.93 0 0 0-42.18-1.21L96 387.64M265.23 464l118.59-117.73a31 31 0 0 1 41.46-1.87L496 402.91"/></svg>
+            </span>
+                <span id="documents-label-text">No files chosen</span>
+            </label>
+        </div>
+
+        <div class="simpui-form-group">
+            <label for="state" class="simpui-label">State</label>
+            <div class="simpui-dropdown-wrapper">
+                <div class="simpui-select">
+                    <div class="simpui-select-trigger">
+                        <span class="simpui-selected-text">Select State</span>
+                        <svg class="simpui-chevron" width="16" height="16" viewBox="0 0 20 20" fill="none">
+                            <path d="M6 8l4 4 4-4" stroke="#555" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
+                    </div>
+                    <div class="simpui-options">
+                        <div class="simpui-options-title">States</div>
+                        <span data-value="NSW">NSW</span>
+                        <span data-value="VIC">VIC</span>
+                        <span data-value="QLD">QLD</span>
+                        <span data-value="SA">SA</span>
+                        <span data-value="WA">WA</span>
+                        <span data-value="TAS">TAS</span>
+                        <span data-value="NT">NT</span>
+                        <span data-value="ACT">ACT</span>
+                        <span data-value="BCT">BCT</span>
+                        <span data-value="CCT">CCT</span>
+                        <span data-value="DCT">DCT</span>
+                        <span data-value="ECT">ECT</span>
+                        <span data-value="FCT">FCT</span>
+                    </div>
+                </div>
+                <input type="hidden" name="state" id="state" />
+            </div>
+        </div>
+
+        <div class="simpui-form-group">
+            <label for="state" class="simpui-label">State</label>
+            <div class="simpui-dropdown-wrapper">
+                <div class="simpui-select">
+                    <div class="simpui-select-trigger">
+                        <span class="simpui-selected-text">Select State</span>
+                        <svg class="simpui-chevron" width="16" height="16" viewBox="0 0 20 20" fill="none">
+                            <path d="M6 8l4 4 4-4" stroke="#555" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
+                    </div>
+                    <div class="simpui-options">
+                        <div class="simpui-options-search">
+                            <div class="simpui-search-wrapper">
+                                <svg class="simpui-search-icon" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24"><path fill="currentColor" d="M15.102 16.162a8 8 0 1 1 1.06-1.06l4.618 4.618a.75.75 0 1 1-1.06 1.06zM16.5 10a6.5 6.5 0 1 0-13 0a6.5 6.5 0 0 0 13 0"/></svg>
+                                <input type="text" placeholder="Search..." class="simpui-options-input" />
+                            </div>
+                        </div>
+                        <span data-value="NSW">NSW</span>
+                        <span data-value="VIC">VIC</span>
+                        <span data-value="QLD">QLD</span>
+                        <span data-value="SA">SA</span>
+                        <span data-value="WA">WA</span>
+                        <span data-value="TAS">TAS</span>
+                        <span data-value="NT">NT</span>
+                        <span data-value="ACT">ACT</span>
+                        <span data-value="BCT">BCT</span>
+                        <span data-value="CCT">CCT</span>
+                        <span data-value="DCT">DCT</span>
+                        <span data-value="ECT">ECT</span>
+                        <span data-value="FCT">FCT</span>
+                    </div>
+                </div>
+                <input type="hidden" name="state" id="state" />
+            </div>
+        </div>
+
+        <div class="simpui-otp-container">
+            <input type="text" class="simpui-otp-input" maxlength="1" inputmode="numeric" pattern="[0-9]*" />
+            <input type="text" class="simpui-otp-input" maxlength="1" inputmode="numeric" pattern="[0-9]*" />
+            <input type="text" class="simpui-otp-input" maxlength="1" inputmode="numeric" pattern="[0-9]*" />
+            <input type="text" class="simpui-otp-input" maxlength="1" inputmode="numeric" pattern="[0-9]*" />
+            <input type="text" class="simpui-otp-input" maxlength="1" inputmode="numeric" pattern="[0-9]*" />
+            <input type="text" class="simpui-otp-input" maxlength="1" inputmode="numeric" pattern="[0-9]*" />
+        </div>
+        <label for="simpui-otp" class="simpui-otp-label">ENTER OTP</label>
+
+        <div class="simpui-radio-group">
+            <input type="radio" id="simpui-option1" name="simpui-radio" value="option1" class="simpui-radio-input" checked>
+            <label for="simpui-option1" class="simpui-radio-label">Option 1</label>
+
+            <input type="radio" id="simpui-option2" name="simpui-radio" value="option2" class="simpui-radio-input">
+            <label for="simpui-option2" class="simpui-radio-label">Option 2</label>
+
+            <input type="radio" id="simpui-option3" name="simpui-radio" value="option3" class="simpui-radio-input">
+            <label for="simpui-option3" class="simpui-radio-label">Option 3</label>
+        </div>
+
+        <label class="simpui-checkbox">
+            <input type="checkbox" id="customCheckbox" />
+            <span class="simpui-box"></span>
+            <span class="simpui-checkbox-label">Accept terms and conditions</span>
+        </label>
+
+        <button type="submit" class="simpui-btn primary sm" id="primaryBtn">Primary</button>
+
+    </div>
+
+</form>
+
+<!-- Buttons without Icons -->
+<div style="margin-top: 2rem;">
+    <button class="simpui-btn primary sm" id="primaryBtn">Primary</button>
+    <button class="simpui-btn secondary sm" id="secondaryBtn">Secondary</button>
+    <button class="simpui-btn success sm" id="successBtn">Success</button>
+    <button class="simpui-btn info sm" id="infoBtn">Info</button>
+    <button class="simpui-btn warning sm" id="warningBtn">Warning</button>
+    <button class="simpui-btn danger sm" id="dangerBtn">Danger</button>
+    <button class="simpui-btn dark sm" id="darkBtn">Dark</button>
+    <button class="simpui-btn light sm" id="lightBtn">Light</button>
+    <button class="simpui-btn outline sm" id="outlineBtn">Outline</button>
+    <button class="simpui-btn sm" id="defaultBtn">Default</button>
+    <button class="simpui-btn sm" id="disabledBtn" disabled>Disabled</button>
+</div>
+
+<!-- Buttons with Icons -->
+<div style="margin-top: 2rem;">
+    <button class="simpui-btn primary sm" id="iconPrimaryBtn">
+        <svg width="16" height="16" fill="currentColor" style="margin-right: 6px;" viewBox="0 0 16 16">
+            <path d="M16 2a2 2 0 0 1-2 2H2a2 2 0 1 1 0-4h12a2 2 0 0 1 2 2z"/>
+        </svg>
+        Primary
+    </button>
+    <button class="simpui-btn secondary sm" id="iconSecondaryBtn">
+        <svg width="16" height="16" fill="currentColor" style="margin-right: 6px;" viewBox="0 0 16 16">
+            <path d="M2 2h12v12H2z"/>
+        </svg>
+        Secondary
+    </button>
+    <button class="simpui-btn success sm" id="iconSuccessBtn">
+        <svg width="16" height="16" fill="currentColor" style="margin-right: 6px;" viewBox="0 0 16 16">
+            <path d="M13.485 1.929l.707.707-8.485 8.485-4.243-4.243.707-.707L6.414 9.1z"/>
+        </svg>
+        Success
+    </button>
+    <button class="simpui-btn info sm" id="iconInfoBtn">
+        <svg width="16" height="16" fill="currentColor" style="margin-right: 6px;" viewBox="0 0 16 16">
+            <path d="M8 1a7 7 0 1 1 0 14A7 7 0 0 1 8 1zm0 12a5 5 0 1 0 0-10 5 5 0 0 0 0 10zm.93-8.412a.5.5 0 0 1-.857 0L6.225 2.91a.5.5 0 1 1 .866-.5L8 3.992l.909-1.582a.5.5 0 1 1 .866.5l-1.844 3.176z"/>
+        </svg>
+        Info
+    </button>
+    <button class="simpui-btn warning sm" id="iconWarningBtn">
+        <svg width="16" height="16" fill="currentColor" style="margin-right: 6px;" viewBox="0 0 16 16">
+            <path d="M8 1.5l6.5 13H1.5L8 1.5zm0 2.18L2.982 13h10.036L8 3.68zM8 6a.5.5 0 0 1 .5.5v2.5a.5.5 0 0 1-1 0V6.5A.5.5 0 0 1 8 6zm0 5a.75.75 0 1 1 0 1.5A.75.75 0 0 1 8 11z"/>
+        </svg>
+        Warning
+    </button>
+    <button class="simpui-btn danger sm" id="iconDangerBtn">
+        <svg width="16" height="16" fill="currentColor" style="margin-right: 6px;" viewBox="0 0 16 16">
+            <path d="M8 1a7 7 0 1 0 0 14A7 7 0 0 0 8 1zM4.646 4.646a.5.5 0 1 1 .708.708L8 8.707l2.646-2.647a.5.5 0 0 1 .708.708L8.707 9.414l2.647 2.646a.5.5 0 0 1-.708.708L8 10.121l-2.646 2.647a.5.5 0 0 1-.708-.708L7.293 9.414 4.646 6.768a.5.5 0 0 1 0-.708z"/>
+        </svg>
+        Danger
+    </button>
+    <button class="simpui-btn dark sm" id="iconDarkBtn">
+        <svg width="16" height="16" fill="currentColor" style="margin-right: 6px;" viewBox="0 0 16 16">
+            <path d="M6 0a6 6 0 0 0 0 12A6 6 0 1 0 6 0z"/>
+        </svg>
+        Dark
+    </button>
+    <button class="simpui-btn light sm" id="iconLightBtn">
+        <svg width="16" height="16" fill="currentColor" style="margin-right: 6px;" viewBox="0 0 16 16">
+            <circle cx="8" cy="8" r="6" stroke="currentColor" stroke-width="2" fill="none"/>
+        </svg>
+        Light
+    </button>
+    <button class="simpui-btn outline sm" id="iconOutlineBtn">
+        <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" style="margin-right: 6px;" viewBox="0 0 16 16">
+            <path d="M1 8h14M8 1v14"/>
+        </svg>
+        Outline
+    </button>
+    <button class="simpui-btn sm" id="iconDefaultBtn">
+        <svg width="16" height="16" fill="currentColor" style="margin-right: 6px;" viewBox="0 0 16 16">
+            <path d="M3 3h10v10H3z"/>
+        </svg>
+        Default
+    </button>
+    <button class="simpui-btn sm" id="iconDisabledBtn" disabled>
+        <svg width="16" height="16" fill="currentColor" style="margin-right: 6px;" viewBox="0 0 16 16">
+            <path d="M2 2l12 12M2 14L14 2"/>
+        </svg>
+        Disabled
+    </button>
+</div>
+
+
+
+<script>
+    // INIT
+    simpickerCalendar("#edit_last_contact_datetime", {
+        enableTime: true,
+        time_24hr: false,
+        defaultDate: "27-07-2025 10:30 AM",
+        mode: "multiple",
+        // mode: "range",
+    });
+
+    simpickerCalendar("#rtl_picker", {
+        enableTime: false,
+        rtl: true
+    });
+</script>
+
+
+</body>
+</html>

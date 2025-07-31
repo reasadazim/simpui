@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>SimpUI Bootstrap-style Buttons (No Scale on Hover)</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Geist:wght@100..900&display=swap" rel="stylesheet">
+  <style>
+    .simpui-btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 6px;
+      font-weight: 500;
+      transition: 
+        background 0.18s, 
+        color 0.18s, 
+        border-color 0.18s, 
+        box-shadow 0.18s;
+      outline: none;
+      border: 1px solid transparent;
+      cursor: pointer;
+      padding: 0.5rem 1.25rem;
+      font-size: 1rem;
+      background: #fff;
+      color: #222;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.10);
+      position: relative;
+      margin: 0.25rem;
+    font-family: "Geist", sans-serif;
+    font-optical-sizing: auto;
+    }
+    .simpui-btn:focus {
+      border-color: #222;
+      box-shadow: 0 0 0 2px #2222, 0 2px 10px rgba(0,0,0,0.14);
+    }
+    .simpui-btn:hover:not(:disabled) {
+      background: #e5e7eb;
+      color: #111;
+      border-color: #bbb;
+      box-shadow: 0 6px 18px rgba(50,50,80,0.14), 0 1.5px 6px rgba(0,0,0,0.08);
+      filter: brightness(1.04);
+    }
+    .simpui-btn:active:not(:disabled) {
+      box-shadow: 0 2px 6px rgba(50,50,80,0.14);
+    }
+    .simpui-btn:disabled {
+      opacity: 0.5;
+      pointer-events: none;
+    }
+
+    /* Bootstrap-like color variants */
+    .simpui-btn.primary {
+      background: #0d6efd;
+      color: #fff;
+      border-color: #0d6efd;
+      box-shadow: 0 2px 8px rgba(13,110,253,0.13);
+    }
+    .simpui-btn.primary:hover:not(:disabled) {
+      background: #0b5ed7;
+      border-color: #0a58ca;
+      box-shadow: 0 6px 18px rgba(13,110,253,0.18), 0 1.5px 6px rgba(0,0,0,0.11);
+      color: #fff;
+      filter: brightness(1.08);
+    }
+
+    .simpui-btn.secondary {
+      background: #6c757d;
+      color: #fff;
+      border-color: #6c757d;
+    }
+    .simpui-btn.secondary:hover:not(:disabled) {
+      background: #5c636a;
+      border-color: #565e64;
+      color: #fff;
+    }
+
+    .simpui-btn.success {
+      background: #198754;
+      color: #fff;
+      border-color: #198754;
+    }
+    .simpui-btn.success:hover:not(:disabled) {
+      background: #157347;
+      border-color: #146c43;
+      color: #fff;
+    }
+
+    .simpui-btn.info {
+      background: #0dcaf0;
+      color: #fff;
+      border-color: #0dcaf0;
+    }
+    .simpui-btn.info:hover:not(:disabled) {
+      background: #31d2f2;
+      border-color: #0dcaf0;
+      color: #fff;
+    }
+
+    .simpui-btn.warning {
+      background: #ffc107;
+      color: #222;
+      border-color: #ffc107;
+    }
+    .simpui-btn.warning:hover:not(:disabled) {
+      background: #ffcd39;
+      border-color: #ffc107;
+      color: #222;
+    }
+
+    .simpui-btn.danger {
+      background: #dc3545;
+      color: #fff;
+      border-color: #dc3545;
+    }
+    .simpui-btn.danger:hover:not(:disabled) {
+      background: #bb2d3b;
+      border-color: #dc3545;
+      color: #fff;
+    }
+
+    .simpui-btn.dark {
+      background: #212529;
+      color: #fff;
+      border-color: #212529;
+    }
+    .simpui-btn.dark:hover:not(:disabled) {
+      background: #181a1b;
+      border-color: #212529;
+      color: #fff;
+    }
+
+    .simpui-btn.light {
+      background: #f8f9fa;
+      color: #222;
+      border-color: #f8f9fa;
+    }
+    .simpui-btn.light:hover:not(:disabled) {
+      background: #e2e6ea;
+      border-color: #f8f9fa;
+      color: #222;
+    }
+
+    /* Outline style */
+    .simpui-btn.outline {
+      background: #fff;
+      color: #222;
+      border-color: #222;
+      box-shadow: 0 2px 8px rgba(34,34,34,0.06);
+    }
+    .simpui-btn.outline:hover:not(:disabled) {
+      background: #e5e7eb;
+      border-color: #444;
+      box-shadow: 0 6px 18px rgba(34,34,34,0.12), 0 1.5px 6px rgba(0,0,0,0.07);
+      color: #111;
+      filter: brightness(1.04);
+    }
+
+    /* Sizes */
+    .simpui-btn.sm { padding: 0.25rem 0.75rem; font-size: 0.875rem; }
+    .simpui-btn.md { padding: 0.5rem 1.25rem; font-size: 1rem; }
+    .simpui-btn.lg { padding: 0.75rem 1.5rem; font-size: 1.125rem; }
+  </style>
+</head>
+<body>
+  <button class="simpui-btn primary sm" id="primaryBtn">Primary</button>
+  <button class="simpui-btn secondary sm" id="secondaryBtn">Secondary</button>
+  <button class="simpui-btn success sm" id="successBtn">Success</button>
+  <button class="simpui-btn info sm" id="infoBtn">Info</button>
+  <button class="simpui-btn warning sm" id="warningBtn">Warning</button>
+  <button class="simpui-btn danger sm" id="dangerBtn">Danger</button>
+  <button class="simpui-btn dark sm" id="darkBtn">Dark</button>
+  <button class="simpui-btn light sm" id="lightBtn">Light</button>
+  <button class="simpui-btn outline sm" id="outlineBtn">Outline</button>
+  <button class="simpui-btn sm" id="defaultBtn">Default</button>
+  <button class="simpui-btn sm" id="disabledBtn" disabled>Disabled</button>
+
+
+
+
+<!-- Buttons with Icons -->
+<div style="margin-top: 2rem;">
+  <button class="simpui-btn primary sm" id="iconPrimaryBtn">
+    <svg width="16" height="16" fill="currentColor" style="margin-right: 6px;" viewBox="0 0 16 16">
+      <path d="M16 2a2 2 0 0 1-2 2H2a2 2 0 1 1 0-4h12a2 2 0 0 1 2 2z"/>
+    </svg>
+    Primary
+  </button>
+  <button class="simpui-btn secondary sm" id="iconSecondaryBtn">
+    <svg width="16" height="16" fill="currentColor" style="margin-right: 6px;" viewBox="0 0 16 16">
+      <path d="M2 2h12v12H2z"/>
+    </svg>
+    Secondary
+  </button>
+  <button class="simpui-btn success sm" id="iconSuccessBtn">
+    <svg width="16" height="16" fill="currentColor" style="margin-right: 6px;" viewBox="0 0 16 16">
+      <path d="M13.485 1.929l.707.707-8.485 8.485-4.243-4.243.707-.707L6.414 9.1z"/>
+    </svg>
+    Success
+  </button>
+  <button class="simpui-btn info sm" id="iconInfoBtn">
+    <svg width="16" height="16" fill="currentColor" style="margin-right: 6px;" viewBox="0 0 16 16">
+      <path d="M8 1a7 7 0 1 1 0 14A7 7 0 0 1 8 1zm0 12a5 5 0 1 0 0-10 5 5 0 0 0 0 10zm.93-8.412a.5.5 0 0 1-.857 0L6.225 2.91a.5.5 0 1 1 .866-.5L8 3.992l.909-1.582a.5.5 0 1 1 .866.5l-1.844 3.176z"/>
+    </svg>
+    Info
+  </button>
+  <button class="simpui-btn warning sm" id="iconWarningBtn">
+    <svg width="16" height="16" fill="currentColor" style="margin-right: 6px;" viewBox="0 0 16 16">
+      <path d="M8 1.5l6.5 13H1.5L8 1.5zm0 2.18L2.982 13h10.036L8 3.68zM8 6a.5.5 0 0 1 .5.5v2.5a.5.5 0 0 1-1 0V6.5A.5.5 0 0 1 8 6zm0 5a.75.75 0 1 1 0 1.5A.75.75 0 0 1 8 11z"/>
+    </svg>
+    Warning
+  </button>
+  <button class="simpui-btn danger sm" id="iconDangerBtn">
+    <svg width="16" height="16" fill="currentColor" style="margin-right: 6px;" viewBox="0 0 16 16">
+      <path d="M8 1a7 7 0 1 0 0 14A7 7 0 0 0 8 1zM4.646 4.646a.5.5 0 1 1 .708.708L8 8.707l2.646-2.647a.5.5 0 0 1 .708.708L8.707 9.414l2.647 2.646a.5.5 0 0 1-.708.708L8 10.121l-2.646 2.647a.5.5 0 0 1-.708-.708L7.293 9.414 4.646 6.768a.5.5 0 0 1 0-.708z"/>
+    </svg>
+    Danger
+  </button>
+  <button class="simpui-btn dark sm" id="iconDarkBtn">
+    <svg width="16" height="16" fill="currentColor" style="margin-right: 6px;" viewBox="0 0 16 16">
+      <path d="M6 0a6 6 0 0 0 0 12A6 6 0 1 0 6 0z"/>
+    </svg>
+    Dark
+  </button>
+  <button class="simpui-btn light sm" id="iconLightBtn">
+    <svg width="16" height="16" fill="currentColor" style="margin-right: 6px;" viewBox="0 0 16 16">
+      <circle cx="8" cy="8" r="6" stroke="currentColor" stroke-width="2" fill="none"/>
+    </svg>
+    Light
+  </button>
+  <button class="simpui-btn outline sm" id="iconOutlineBtn">
+    <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" style="margin-right: 6px;" viewBox="0 0 16 16">
+      <path d="M1 8h14M8 1v14"/>
+    </svg>
+    Outline
+  </button>
+  <button class="simpui-btn sm" id="iconDefaultBtn">
+    <svg width="16" height="16" fill="currentColor" style="margin-right: 6px;" viewBox="0 0 16 16">
+      <path d="M3 3h10v10H3z"/>
+    </svg>
+    Default
+  </button>
+  <button class="simpui-btn sm" id="iconDisabledBtn" disabled>
+    <svg width="16" height="16" fill="currentColor" style="margin-right: 6px;" viewBox="0 0 16 16">
+      <path d="M2 2l12 12M2 14L14 2"/>
+    </svg>
+    Disabled
+  </button>
+</div>
+
+
+
+
+
+</body>
+</html>
