@@ -166,21 +166,76 @@ document.addEventListener("DOMContentLoaded", () => {
 
 
 
+    // Multiselect Dropdown
+document.querySelectorAll(".simpui-select.multiselect").forEach(select => {
+  const trigger = select.querySelector(".simpui-select-trigger");
+  const options = select.querySelector(".simpui-options");
+  const hiddenInput = select.parentElement.querySelector("input[type='hidden']");
+
+  // Toggle open/close
+  trigger.addEventListener("click", function (e) {
+    select.classList.toggle("open");
+    e.stopPropagation();
+  });
+
+  // Checkbox change updates display and hidden input
+  options.querySelectorAll("input[type='checkbox']").forEach(checkbox => {
+    checkbox.addEventListener("change", () => {
+      const selected = Array.from(options.querySelectorAll("input:checked")).map(cb => cb.value);
+      hiddenInput.value = selected.join(",");
+      trigger.querySelector(".simpui-selected-text").textContent = selected.length > 0
+        ? selected.join(", ")
+        : "Select States";
+    });
+  });
+
+  // Close when clicking outside
+  document.addEventListener("click", function (e) {
+    if (!select.contains(e.target)) {
+      select.classList.remove("open");
+    }
+  });
+});
+
+
+
+
     // OTP
 
-    const inputs = document.querySelectorAll('.simpui-otp-input');
-    inputs.forEach((input, idx) => {
-        input.addEventListener('input', () => {
-            if (input.value.length === 1 && idx < inputs.length - 1) {
-                inputs[idx + 1].focus();
-            }
-        });
-        input.addEventListener('keydown', (e) => {
-            if (e.key === 'Backspace' && !input.value && idx > 0) {
-                inputs[idx - 1].focus();
-            }
-        });
+const inputs = document.querySelectorAll('.simpui-otp-input');
+
+inputs.forEach((input, idx) => {
+    // Handle normal typing
+    input.addEventListener('input', () => {
+        if (input.value.length === 1 && idx < inputs.length - 1) {
+            inputs[idx + 1].focus();
+        }
     });
+
+    // Handle backspace
+    input.addEventListener('keydown', (e) => {
+        if (e.key === 'Backspace' && !input.value && idx > 0) {
+            inputs[idx - 1].focus();
+        }
+    });
+
+    // Handle paste event
+    input.addEventListener('paste', (e) => {
+        e.preventDefault();
+        const paste = (e.clipboardData || window.clipboardData).getData('text');
+        // Only digits, and limit to inputs length
+        const pasteValues = paste.replace(/\D/g, '').slice(0, inputs.length).split('');
+        pasteValues.forEach((char, i) => {
+            inputs[i].value = char;
+        });
+        // Focus last filled input
+        if (pasteValues.length > 0 && pasteValues.length < inputs.length) {
+            inputs[pasteValues.length].focus();
+        } else if (pasteValues.length === inputs.length) {
+            inputs[inputs.length - 1].focus();
+        }
+    });
+});
 
 
 

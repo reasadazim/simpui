@@ -1,4 +1,4 @@
-/* SimpUI JS Module: Calendar: Multi-date, Range, and Disabled Dates */
+/* SimpUI JS Module: Calendar: Multi-date, Range, Disabled Dates, and Weekend Highlight */
 function simpickerCalendar(selector, options = {}) {
   const input = document.querySelector(selector);
   if (!input) return;
@@ -10,7 +10,8 @@ function simpickerCalendar(selector, options = {}) {
     defaultDate = null,
     rtl = false,
     mode = "single", // mode: "single", "multiple", or "range"
-    disable = [] // <--- NEW: Array of disabled dates
+    disable = [],
+    weekend = [] // e.g. ['Sat','Sun']
   } = options;
 
   const wrapper = document.createElement('div');
@@ -210,6 +211,11 @@ function simpickerCalendar(selector, options = {}) {
     return disabledDates.includes(key);
   }
 
+  // Helper: Get day abbreviation for a JS Date (Sun, Mon, etc)
+  function getDayAbbr(date) {
+    return ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'][date.getDay()];
+  }
+
   createCalendarDropdown(monthContainer, 'month', months, selectedDate.getMonth(), (i) => {
     viewDate.setMonth(i);
     renderCalendar(viewDate);
@@ -266,10 +272,14 @@ function simpickerCalendar(selector, options = {}) {
     const today = new Date();
 
     calendarGrid.innerHTML = '';
-    ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'].forEach(d => {
+    // Weekday titles with weekend highlighting
+    ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'].forEach((d, idx) => {
       const div = document.createElement('div');
       div.className = 'weekday';
       div.textContent = d;
+      if (weekend && weekend.includes(d)) {
+        div.classList.add('weekend');
+      }
       calendarGrid.appendChild(div);
     });
 
@@ -285,6 +295,10 @@ function simpickerCalendar(selector, options = {}) {
       const div = document.createElement('div');
       div.className = 'day dimmed';
       div.textContent = day;
+      const prevDate = new Date(year, month - 1, day, 0, 0, 0, 0);
+      if (weekend && weekend.includes(getDayAbbr(prevDate))) {
+        div.classList.add('weekend');
+      }
       div.addEventListener('click', () => {
         viewDate.setMonth(viewDate.getMonth() - 1);
         renderCalendar(viewDate);
@@ -298,6 +312,11 @@ function simpickerCalendar(selector, options = {}) {
       div.className = 'day';
       div.textContent = day;
       const thisDate = new Date(year, month, day, 0, 0, 0, 0);
+
+      // --- Highlight weekends ---
+      if (weekend && weekend.includes(getDayAbbr(thisDate))) {
+        div.classList.add('weekend');
+      }
 
       // --- DISABLED LOGIC ---
       let isDisabled = isDisabledDate(thisDate);
@@ -414,6 +433,10 @@ function simpickerCalendar(selector, options = {}) {
       const div = document.createElement('div');
       div.className = 'day dimmed';
       div.textContent = i;
+      const nextDate = new Date(year, month + 1, i, 0, 0, 0, 0);
+      if (weekend && weekend.includes(getDayAbbr(nextDate))) {
+        div.classList.add('weekend');
+      }
       div.addEventListener('click', () => {
         viewDate.setMonth(viewDate.getMonth() + 1);
         renderCalendar(viewDate);
