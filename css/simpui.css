@@ -810,11 +810,7 @@ html, body, h1, h2, h3, h4, h5, h6, p, div, span, strong, th, tr, input, select,
       --modal-radius: 1rem;
       --backdrop-bg: rgba(0,0,0,0.5);
     }
-    body {
-      font-family: system-ui, sans-serif;
-      margin: 0;
-      background: #f7f7f7;
-    }
+
     .simpui-dialog-backdrop {
       position: fixed;
       inset: 0;
@@ -911,13 +907,7 @@ html, body, h1, h2, h3, h4, h5, h6, p, div, span, strong, th, tr, input, select,
       --simpui-multimodal-radius: 1rem;
       --simpui-multimodal-backdrop-bg: rgba(0,0,0,0.5);
     }
-
-    body {
-      font-family: system-ui, sans-serif;
-      margin: 0;
-      background: #f7f7f7;
-    }
-
+    
     .simpui-multimodal-backdrop {
       position: fixed;
       inset: 0;

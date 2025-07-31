@@ -246,10 +246,10 @@ function simpickerCalendar(selector, options = {}) {
 
   function ymdEqual(a, b) {
     return (
-      a && b &&
-      a.getFullYear() === b.getFullYear() &&
-      a.getMonth() === b.getMonth() &&
-      a.getDate() === b.getDate()
+        a && b &&
+        a.getFullYear() === b.getFullYear() &&
+        a.getMonth() === b.getMonth() &&
+        a.getDate() === b.getDate()
     );
   }
   function isDateInRange(d, start, end) {
@@ -337,7 +337,7 @@ function simpickerCalendar(selector, options = {}) {
       let isMultiSelected = false;
       if (mode === "multiple") {
         isMultiSelected = selectedDates.some(selDate =>
-          ymdEqual(thisDate, selDate)
+            ymdEqual(thisDate, selDate)
         );
       }
       const isSelected = ymdEqual(thisDate, selectedDate);
@@ -377,9 +377,9 @@ function simpickerCalendar(selector, options = {}) {
 
             let alreadyIdx = selectedDates.findIndex(d => ymdEqual(d, clickedDate));
             if (
-              selectedDates.length === 1 &&
-              !ymdEqual(selectedDates[0], clickedDate) &&
-              input.hasAttribute("data-default")
+                selectedDates.length === 1 &&
+                !ymdEqual(selectedDates[0], clickedDate) &&
+                input.hasAttribute("data-default")
             ) {
               selectedDates = [clickedDate];
               input.removeAttribute("data-default");
@@ -467,12 +467,25 @@ function simpickerCalendar(selector, options = {}) {
   }
 
   input.addEventListener('click', () => {
+
+    // Animation - open
+
+    popup.classList.remove('show'); // Ensure clean state
+    popup.classList.add('dropdown-anim');
     popup.style.display = 'block';
+
+    // Force a reflow to restart the animation
+    void popup.offsetHeight;
+
+    popup.classList.add('show');
+
+    // END - Animation - open
+
     viewDate = (mode === "range" && rangeDates.length)
-      ? rangeDates[rangeDates.length-1]
-      : (mode === "multiple" && selectedDates.length)
-        ? selectedDates[selectedDates.length-1]
-        : selectedDate;
+        ? rangeDates[rangeDates.length-1]
+        : (mode === "multiple" && selectedDates.length)
+            ? selectedDates[selectedDates.length-1]
+            : selectedDate;
     renderCalendar(viewDate);
   });
 
@@ -502,7 +515,23 @@ function simpickerCalendar(selector, options = {}) {
       }
     }
     updateInputValue();
-    popup.style.display = 'none';
+
+    // Animation - close
+
+    popup.classList.remove('show');
+
+    popup.addEventListener('transitionend', function handler() {
+      popup.style.display = 'none';
+      popup.removeEventListener('transitionend', handler);
+    });  popup.classList.remove('show');
+
+    popup.addEventListener('transitionend', function handler() {
+      popup.style.display = 'none';
+      popup.removeEventListener('transitionend', handler);
+    });
+
+    // END - Animation - close
+
   });
 
   prevMonthBtn.addEventListener('click', () => {
