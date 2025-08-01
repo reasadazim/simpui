@@ -95,42 +95,42 @@ html, body, h1, h2, h3, h4, h5, h6, p, div, span, strong, th, tr, input, select,
 
 
 .simpui-input-wrapper {
-  position: relative;
+    position: relative;
 }
 
 .simpui-input-wrapper .simpui-input-icon {
-  position: absolute;
-  top: 50%;
-  left: 12px;
-  transform: translateY(-50%);
-  width: 16px;   /* smaller width */
-  height: 16px;  /* smaller height */
-  color: #888;
-  pointer-events: none;
+    position: absolute;
+    top: 50%;
+    left: 12px;
+    transform: translateY(-50%);
+    width: 16px;   /* smaller width */
+    height: 16px;  /* smaller height */
+    color: #888;
+    pointer-events: none;
 }
 
 .simpui-input-wrapper .simpui-input {
-  padding-left: 40px; /* adjusted padding */
+    padding-left: 40px; /* adjusted padding */
 }
 
 .simpui-input-wrapper .simpui-input-icon {
-  top: calc(50% - 1px); /* slight vertical tweak */
+    top: calc(50% - 1px); /* slight vertical tweak */
 }
 
 .simpui-input-icon-right {
-  position: absolute;
-  top: 50%;
-  right: 12px;
-  transform: translateY(-50%);
-  width: 16px;
-  height: 16px;
-  color: #888;
-  pointer-events: none;
+    position: absolute;
+    top: 50%;
+    right: 12px;
+    transform: translateY(-50%);
+    width: 16px;
+    height: 16px;
+    color: #888;
+    pointer-events: none;
 }
 
 .simpui-has-icon-right .simpui-input {
-  padding-left: 15px;
-  padding-right: 40px; /* add space for the icon */
+    padding-left: 15px;
+    padding-right: 40px; /* add space for the icon */
 }
 
 
@@ -383,17 +383,17 @@ html, body, h1, h2, h3, h4, h5, h6, p, div, span, strong, th, tr, input, select,
 /* Multiselect Dropdown */
 /* Multiselect label with checkbox */
 .simpui-options label {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  padding: 10px 15px;
-  font-size: 14px;
-  cursor: pointer;
-  color: #333;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 10px 15px;
+    font-size: 14px;
+    cursor: pointer;
+    color: #333;
 }
 
 .simpui-options label:hover {
-  background-color: #f0f0f0;
+    background-color: #f0f0f0;
 }
 
 
@@ -719,75 +719,75 @@ html, body, h1, h2, h3, h4, h5, h6, p, div, span, strong, th, tr, input, select,
 
 
 /* Toast */
-    #toast-container {
-      position: fixed;
-      bottom: 20px;
-      right: 20px;
-      z-index: 1000;
-    }
+#toast-container {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    z-index: 1000;
+}
 
-    .toast {
-      background-color: #fff;
-      border-radius: 10px;
-      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-      padding: 16px 20px;
-      margin-bottom: 10px;
-      display: flex;
-      justify-content: space-between;
-      align-items: flex-start;
-      max-width: 360px;
-      animation: slideIn 0.3s ease forwards;
-    }
+.toast {
+    background-color: #fff;
+    border-radius: 10px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    padding: 16px 20px;
+    margin-bottom: 10px;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    max-width: 360px;
+    animation: slideIn 0.3s ease forwards;
+}
 
-    .toast-content {
-      display: flex;
-      flex-direction: column;
-      margin-right: 12px;
-    }
+.toast-content {
+    display: flex;
+    flex-direction: column;
+    margin-right: 12px;
+}
 
-    .toast-title {
-      font-weight: bold;
-      margin-bottom: 6px;
-      font-size: 15px;
-      color: #000;
-    }
+.toast-title {
+    font-weight: bold;
+    margin-bottom: 6px;
+    font-size: 15px;
+    color: #000;
+}
 
-    .toast-subtitle {
-      font-size: 14px;
-      color: #555;
-    }
+.toast-subtitle {
+    font-size: 14px;
+    color: #555;
+}
 
-    .toast-action button {
-      background-color: #000;
-      color: #fff;
-      border: none;
-      padding: 6px 14px;
-      border-radius: 6px;
-      cursor: pointer;
-      font-size: 14px;
-    }
+.toast-action button {
+    background-color: #000;
+    color: #fff;
+    border: none;
+    padding: 6px 14px;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 14px;
+}
 
-    .toast-action button:hover {
-      opacity: 0.85;
-    }
+.toast-action button:hover {
+    opacity: 0.85;
+}
 
-    @keyframes slideIn {
-      from {
+@keyframes slideIn {
+    from {
         opacity: 0;
         transform: translateX(100%);
-      }
-      to {
+    }
+    to {
         opacity: 1;
         transform: translateX(0);
-      }
     }
+}
 
-    @keyframes fadeOut {
-      to {
+@keyframes fadeOut {
+    to {
         opacity: 0;
         transform: translateX(100%);
-      }
     }
+}
 
 
 
@@ -802,97 +802,81 @@ html, body, h1, h2, h3, h4, h5, h6, p, div, span, strong, th, tr, input, select,
 
 
 
-    /* Modal */
-    :root {
-      --modal-bg: #fff;
-      --modal-fg: #111;
-      --modal-shadow: 0 8px 32px 0 rgba(0,0,0,0.16);
-      --modal-radius: 1rem;
-      --backdrop-bg: rgba(0,0,0,0.5);
-    }
+/* Modal */
+:root {
+    --modal-bg: #fff;
+    --modal-fg: #111;
+    --modal-shadow: 0 8px 32px 0 rgba(0,0,0,0.16);
+    --modal-radius: 1rem;
+    --backdrop-bg: rgba(0,0,0,0.5);
+}
 
-    .simpui-dialog-backdrop {
-      position: fixed;
-      inset: 0;
-      background: var(--backdrop-bg);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      z-index: 1000;
-      animation: simpui-fadeIn 0.15s ease;
-    }
-    @keyframes simpui-fadeIn {
-      from { opacity: 0; }
-      to { opacity: 1; }
-    }
-    .simpui-dialog-panel {
-      background: var(--modal-bg);
-      color: var(--modal-fg);
-      box-shadow: var(--modal-shadow);
-      border-radius: var(--modal-radius);
-      max-width: 400px;
-      width: 90vw;
-      padding: 2rem 1.5rem 1.5rem 1.5rem;
-      position: relative;
-      animation: simpui-panelPop 0.2s cubic-bezier(.4,0,.2,1);
-    }
-    @keyframes simpui-panelPop {
-      from {
+.simpui-dialog-backdrop {
+    position: fixed;
+    inset: 0;
+    background: var(--backdrop-bg);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1000;
+    animation: simpui-fadeIn 0.15s ease;
+}
+@keyframes simpui-fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+.simpui-dialog-panel {
+    background: var(--modal-bg);
+    color: var(--modal-fg);
+    box-shadow: var(--modal-shadow);
+    border-radius: var(--modal-radius);
+    max-width: 400px;
+    width: 90vw;
+    padding: 2rem 1.5rem 1.5rem 1.5rem;
+    position: relative;
+    animation: simpui-panelPop 0.2s cubic-bezier(.4,0,.2,1);
+}
+@keyframes simpui-panelPop {
+    from {
         opacity: 0;
         transform: translateY(30px) scale(0.95);
-      }
-      to {
+    }
+    to {
         opacity: 1;
         transform: translateY(0) scale(1);
-      }
     }
-    .simpui-dialog-title {
-      font-size: 1.25rem;
-      font-weight: 600;
-      margin-bottom: 0.5rem;
-    }
-    .simpui-dialog-desc {
-      font-size: 1rem;
-      color: #666;
-      margin-bottom: 1.25rem;
-    }
-    .simpui-dialog-close {
-      position: absolute;
-      top: 1rem;
-      right: 1rem;
-      background: none;
-      border: none;
-      font-size: 1.25rem;
-      color: #aaa;
-      cursor: pointer;
-      transition: color .15s;
-    }
-    .simpui-dialog-close:hover {
-      color: #222;
-    }
-    .simpui-dialog-actions {
-      display: flex;
-      gap: 0.5rem;
-      justify-content: flex-end;
-      margin-top: 1rem;
-    }
-    .simpui-btn {
-      padding: 0.5rem 1rem;
-      border-radius: 0.5rem;
-      border: none;
-      font-size: 1rem;
-      cursor: pointer;
-      background: #111;
-      color: #fff;
-      transition: background .15s;
-    }
-    .simpui-btn.secondary {
-      background: #f1f1f1;
-      color: #222;
-    }
-    .simpui-btn:active {
-      opacity: 0.85;
-    }
+}
+.simpui-dialog-title {
+    font-size: 1.25rem;
+    font-weight: 600;
+    margin-bottom: 0.5rem;
+}
+.simpui-dialog-desc {
+    font-size: 1rem;
+    color: #666;
+    margin-bottom: 1.25rem;
+}
+.simpui-dialog-close {
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+    background: none;
+    border: none;
+    font-size: 1.25rem;
+    color: #aaa;
+    cursor: pointer;
+    transition: color .15s;
+}
+.simpui-dialog-close:hover {
+    color: #222;
+}
+.simpui-dialog-actions {
+    display: flex;
+    gap: 0.5rem;
+    justify-content: flex-end;
+    margin-top: 1rem;
+}
+
 
 
 
@@ -900,100 +884,81 @@ html, body, h1, h2, h3, h4, h5, h6, p, div, span, strong, th, tr, input, select,
 
 
 /*  Multi Modal  */
-    :root {
-      --simpui-multimodal-bg: #fff;
-      --simpui-multimodal-fg: #111;
-      --simpui-multimodal-shadow: 0 8px 32px rgba(0,0,0,0.16);
-      --simpui-multimodal-radius: 1rem;
-      --simpui-multimodal-backdrop-bg: rgba(0,0,0,0.5);
-    }
-    
-    .simpui-multimodal-backdrop {
-      position: fixed;
-      inset: 0;
-      background: var(--simpui-multimodal-backdrop-bg);
-      display: none;
-      align-items: center;
-      justify-content: center;
-      z-index: 1000;
-    }
+:root {
+    --simpui-multimodal-bg: #fff;
+    --simpui-multimodal-fg: #111;
+    --simpui-multimodal-shadow: 0 8px 32px rgba(0,0,0,0.16);
+    --simpui-multimodal-radius: 1rem;
+    --simpui-multimodal-backdrop-bg: rgba(0,0,0,0.5);
+}
 
-    .simpui-multimodal-panel {
-      background: var(--simpui-multimodal-bg);
-      color: var(--simpui-multimodal-fg);
-      box-shadow: var(--simpui-multimodal-shadow);
-      border-radius: var(--simpui-multimodal-radius);
-      max-width: 400px;
-      width: 90vw;
-      padding: 2rem 1.5rem 1.5rem 1.5rem;
-      position: relative;
-      display: none;
-      animation: simpui-multimodal-panelPop 0.2s ease;
-    }
+.simpui-multimodal-backdrop {
+    position: fixed;
+    inset: 0;
+    background: var(--simpui-multimodal-backdrop-bg);
+    display: none;
+    align-items: center;
+    justify-content: center;
+    z-index: 1000;
+}
 
-    .simpui-multimodal-panel.active {
-      display: block;
-    }
+.simpui-multimodal-panel {
+    background: var(--simpui-multimodal-bg);
+    color: var(--simpui-multimodal-fg);
+    box-shadow: var(--simpui-multimodal-shadow);
+    border-radius: var(--simpui-multimodal-radius);
+    max-width: 400px;
+    width: 90vw;
+    padding: 2rem 1.5rem 1.5rem 1.5rem;
+    position: relative;
+    display: none;
+    animation: simpui-multimodal-panelPop 0.2s ease;
+}
 
-    @keyframes simpui-multimodal-panelPop {
-      from {
+.simpui-multimodal-panel.active {
+    display: block;
+}
+
+@keyframes simpui-multimodal-panelPop {
+    from {
         opacity: 0;
         transform: translateY(30px) scale(0.95);
-      }
-      to {
+    }
+    to {
         opacity: 1;
         transform: translateY(0) scale(1);
-      }
     }
+}
 
-    .simpui-multimodal-title {
-      font-size: 1.25rem;
-      font-weight: 600;
-      margin-bottom: 0.5rem;
-    }
+.simpui-multimodal-title {
+    font-size: 1.25rem;
+    font-weight: 600;
+    margin-bottom: 0.5rem;
+}
 
-    .simpui-multimodal-desc {
-      font-size: 1rem;
-      color: #666;
-      margin-bottom: 1.25rem;
-    }
+.simpui-multimodal-desc {
+    font-size: 1rem;
+    color: #666;
+    margin-bottom: 1.25rem;
+}
 
-    .simpui-multimodal-close {
-      position: absolute;
-      top: 1rem;
-      right: 1rem;
-      background: none;
-      border: none;
-      font-size: 1.25rem;
-      color: #aaa;
-      cursor: pointer;
-    }
+.simpui-multimodal-close {
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+    background: none;
+    border: none;
+    font-size: 1.25rem;
+    color: #aaa;
+    cursor: pointer;
+}
 
-    .simpui-multimodal-actions {
-      display: flex;
-      justify-content: space-between;
-      gap: 0.5rem;
-      margin-top: 1.5rem;
-    }
-
-    .simpui-multimodal-btn {
-      padding: 0.5rem 1rem;
-      border-radius: 0.5rem;
-      border: none;
-      font-size: 1rem;
-      cursor: pointer;
-      background: #111;
-      color: #fff;
-    }
-
-    .simpui-multimodal-btn.secondary {
-      background: #f1f1f1;
-      color: #222;
-    }
-
-    .simpui-multimodal-btn:active {
-      opacity: 0.85;
-    }
+.simpui-multimodal-actions {
+    display: flex;
+    justify-content: space-between;
+    gap: 0.5rem;
+    margin-top: 1.5rem;
+}
 
 
 

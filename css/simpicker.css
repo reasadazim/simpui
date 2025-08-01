@@ -296,19 +296,7 @@ span.simpui-selected-text {
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
+/* Selected Date Range Highlight Color */
 .simpicker-calendar .in-range {
   background: #e0f0ff;
 }
@@ -319,15 +307,7 @@ span.simpui-selected-text {
 }
 
 
-
-
-
-
-
-
-
-
-
+/* Disabled Days */
 .simpicker-calendar .day.disabled {
   /*color: #ccc;*/
   /*background: #f9f9f9;*/
@@ -349,7 +329,7 @@ span.simpui-selected-text {
 }
 
 
-
+/* Highlight Weekend */
 .simpicker-calendar .weekday.weekend {
   color: #e53935 !important;
   font-weight: bold;
@@ -360,10 +340,7 @@ span.simpui-selected-text {
 }
 
 
-
-
-
-
+/* Calendar Popup Animation*/
 .dropdown-anim {
   opacity: 0;
   transform: translateY(-20px) scale(0.98);
