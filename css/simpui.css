@@ -76,11 +76,15 @@ html, body, h1, h2, h3, h4, h5, h6, p, div, span, strong, th, tr, input, select,
     box-shadow: 0 1px 4px rgba(0, 0, 0, 0.1);
 }
 
+.simpui-textarea {
+    min-height: 10em;
+}
+
 .simpui-input:focus,
 .simpui-textarea:focus {
     outline: none;
     border-color: #c7c7c7;
-    box-shadow: 0 0 0 3px rgba(0, 0, 0, 0.05);
+    box-shadow: 0 0 0 3px rgba(0, 0, 0, 0.10);
 }
 
 .simpui-input:focus + .simpui-floating-label,
@@ -133,6 +137,19 @@ html, body, h1, h2, h3, h4, h5, h6, p, div, span, strong, th, tr, input, select,
     padding-right: 40px; /* add space for the icon */
 }
 
+.simpui-input::placeholder{
+    color:#a7a7a7;
+}
+
+.simpui-search-icon {
+    position: absolute;
+    top: 50%;
+    left: 10px;
+    transform: translateY(-50%);
+    pointer-events: none;
+    fill: #888;
+    color:#a7a7a7;
+}
 
 
 
@@ -204,13 +221,9 @@ html, body, h1, h2, h3, h4, h5, h6, p, div, span, strong, th, tr, input, select,
     display: block;
 }
 
-.simpui-label {
-    font-size: 13px;
-    font-weight: 600;
-    margin-bottom: 10px;
+.simpui-input-wrapper.has-error + .simpui-error {
+    display: block;
 }
-
-
 
 
 
@@ -362,15 +375,6 @@ html, body, h1, h2, h3, h4, h5, h6, p, div, span, strong, th, tr, input, select,
     border-radius: 0.375rem;
     outline: none;
     box-sizing: border-box;
-}
-
-.simpui-search-icon {
-    position: absolute;
-    top: 50%;
-    left: 10px;
-    transform: translateY(-50%);
-    pointer-events: none;
-    fill: #888;
 }
 
 
@@ -636,10 +640,10 @@ html, body, h1, h2, h3, h4, h5, h6, p, div, span, strong, th, tr, input, select,
 }
 
 .simpui-label {
-    font-size: 1em;
+    font-size: 0.9em;
     color: #18181b;
-    letter-spacing: 0.01em;
-    transition: color 0.2s;
+    font-weight: 600;
+    margin-bottom: 0.7em;
 }
 
 .simpui-checkbox input[type="checkbox"]:disabled + .simpui-box {
