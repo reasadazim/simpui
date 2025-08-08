@@ -7,6 +7,12 @@ No build steps, no frameworks, no headaches.
 
 ---
 
+## 🌐 Demo
+Check out the live demo of SimpUI here:
+https://simpui.reasadazim.com/
+
+---
+
 ## ✨ Features
 
 - **Modern, responsive components** that work on any device  
@@ -23,7 +29,7 @@ SimpUI is perfect for developers who want **simplicity**, **speed**, and **flexi
 Getting started with SimpUI is quick and easy:
 
 ### 1️⃣ Download the Bundle
-Clone this repository or [download the latest release](#) to get started.
+Clone this repository or [download the latest release](https://github.com/reasadazim/simpui/archive/refs/heads/main.zip) to get started.
 
 ```bash
 git clone https://github.com/reasadazim/simpui.git
