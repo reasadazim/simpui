@@ -1,0 +1,511 @@
+/*!
+ * Simpicker Calendar: A simple calendar with date and time picker
+ * Author: A. M. Reasad Azim Bappy
+ * License: GPL-3.0
+ * Version: 1.0
+ */
+
+:root {
+    --primary: #171717;
+    --gray-100: #f3f4f6;
+    --gray-300: #595959;
+    --gray-500: #6b7280;
+    --white: #ffffff;
+    --black: #171717;
+}
+
+.simpicker-wrapper {
+    position: relative;
+    /*max-width: 320px;*/
+    /*margin: auto;*/
+}
+
+.simpicker-wrapper input{
+    padding-left: 15px;
+}
+
+.simpicker-wrapper[dir="rtl"] .simpicker-header {
+    flex-direction: row-reverse;
+}
+
+.simpicker-wrapper[dir="rtl"] .simpicker-calendar {
+    direction: rtl;
+}
+
+.simpicker-input {
+    /*width: 100%;*/
+    /*padding: 12px 16px;*/
+    /*font-size: 16px;*/
+    /*border: 1px solid var(--gray-300);*/
+    /*border-radius: 8px;*/
+    /*background: var(--white);*/
+    /*box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);*/
+    /*transition: border-color 0.2s;*/
+}
+
+.simpicker-input:focus {
+    /*outline: none;*/
+    /*border-color: var(--primary);*/
+}
+
+.simpicker-popup {
+    position: absolute;
+    top: 110%;
+    left: 0;
+    background: var(--white);
+    border: 1px solid #c7c7c7;
+    border-radius: 10px;
+    padding: 16px;
+    z-index: 1000;
+    display: none;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+    min-width: 300px;
+}
+
+.simpicker-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 12px;
+    gap: 8px;
+}
+
+.simpicker-header select,
+.simpicker-header div {
+    /*font-size: 14px;*/
+    /*padding: 6px 10px;*/
+    /*border-radius: 6px;*/
+    /*border: 1px solid var(--gray-300);*/
+    background: var(--white);
+    cursor: pointer;
+}
+
+.prevMonth, .nextMonth{
+    font-size: 14px;
+    padding: 6px 10px 6px 10px;
+    /*border-radius: 6px;*/
+    /*border: 1px solid var(--gray-300);*/
+    /*background: var(--white);*/
+    cursor: pointer;
+}
+
+.prevMonth svg, .nextMonth svg{
+    margin-top: 3px;
+    color: #696969;
+}
+
+.prevMonth:hover, .nextMonth:hover{
+    border-radius: 6px;
+    background: #f1f1f1;
+}
+
+.simpicker-calendar {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    gap: 4px;
+    text-align: center;
+    margin-bottom: 12px;
+}
+
+.simpicker-calendar .day {
+    padding: 6px 0;
+    /*background: var(--gray-100);*/
+    border-radius: 6px;
+    cursor: pointer;
+    transition: background 0.2s, color 0.2s;
+    font-size: 12px;
+    border: 2px solid rgba(255, 0, 0, 0);
+}
+
+.simpicker-calendar .day:hover {
+    background: var(--primary);
+    color: var(--white);
+}
+
+.simpicker-calendar .selected {
+    background: var(--primary);
+    color: var(--white);
+    /*font-weight: bold;*/
+}
+
+.simpicker-calendar .today {
+    border: 2px solid var(--primary);
+}
+
+.simpicker-calendar .weekday {
+    /*font-weight: 600;*/
+    background: transparent;
+    color: var(--gray-500);
+    cursor: default;
+    font-size: 12px;
+}
+
+.simpicker-calendar .day.dimmed {
+    opacity: 0.4;
+    pointer-events: auto;
+    cursor: pointer;
+}
+
+
+.simpicker-time {
+    display: flex;
+    gap: 10px;
+    margin-top: 15px;
+    margin-bottom: 15px;
+}
+
+.simpicker-time select {
+    flex: 1;
+    padding: 8px;
+    border-radius: 6px;
+    border: 1px solid var(--gray-300);
+    background: var(--white);
+}
+
+/*.simpicker-set {*/
+/*    !*width: 100%;*!*/
+/*    padding: 12px;*/
+/*    font-weight: 600;*/
+/*    border-radius: 8px;*/
+/*    text-align: center;*/
+/*    background: var(--primary);*/
+/*    color: var(--white);*/
+/*    cursor: pointer;*/
+/*    border: none;*/
+/*    transition: background 0.2s;*/
+/*}*/
+
+/*.simpicker-set:hover {*/
+/*    background: #4338ca;*/
+/*}*/
+
+.simpicker-set {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    position: relative;
+    margin-top: 25px;
+    margin-bottom: 10px;
+}
+
+#resetBtn {
+    position: absolute;
+    left: 0;
+}
+
+#setBtn {
+    position: absolute;
+    right: 0;
+}
+
+.simpicker-separator{
+    width: 100%;
+    height: 1px;
+    background: #cccccc;
+}
+
+.simpui-calendar-dropdown-wrapper {
+    font-family: 'Segoe UI', sans-serif;
+    /*width: 300px;*/
+    margin-bottom: 1rem;
+}
+
+.simpui-calendar-select {
+    position: relative;
+    cursor: pointer;
+    background: #fff;
+    border: 1px solid #ccc;
+    border-radius: 0.5rem;
+    padding: 8px 8px;
+    transition: border 0.3s ease;
+    box-shadow: 0 1px 4px rgba(0,0,0,0.1);
+}
+
+.simpui-calendar-select:hover {
+    border-color:#c7c7c7;
+}
+
+.simpui-calendar-select-trigger {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 12px;
+    color: #333;
+}
+
+.simpui-chevron {
+    transition: transform 0.3s ease;
+}
+
+.simpui-calendar-select.open .simpui-chevron {
+    transform: rotate(180deg);
+}
+
+.simpui-options {
+    position: absolute;
+    top: 110%;
+    left: 0;
+    right: 0;
+    background: #fff;
+    border: 1px solid #ccc;
+    border-radius: 0.5rem;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.15);
+    z-index: 10;
+    max-height: 0;
+    overflow-y: hidden; /* Changed */
+    opacity: 0;
+    transition: all 0.3s ease;
+    pointer-events: none;
+}
+
+.simpui-calendar-select.open .simpui-options {
+    max-height: 300px;
+    overflow-y: auto; /* Enable scroll */
+    opacity: 1;
+    pointer-events: auto;
+    width:fit-content;
+}
+
+.simpui-options::-webkit-scrollbar {
+    width: 8px;
+}
+
+.simpui-options::-webkit-scrollbar-thumb {
+    background: #ccc;
+    border-radius: 4px;
+}
+
+.simpui-options-title {
+    font-weight: 600;
+    font-size: 13px;
+    padding: 10px 15px;
+    background-color: #f8f8f8;
+    border-bottom: 1px solid #eee;
+    color: #666;
+    text-transform: uppercase;
+    pointer-events: none;
+}
+
+.simpui-options .simpui-option {
+    display: block;
+    padding: 10px 15px;
+    font-size: 13px;
+    color: #333;
+    cursor: pointer;
+}
+
+.simpui-options .simpui-option:hover {
+    background-color: #f0f0f0;
+}
+
+.simpicker-popup .simpui-selected-text {
+    padding-right: 5px;
+    font-weight: 600;
+}
+.calendar-hour {
+    width: 33.33%;
+}
+.calendar-minute {
+    width: 33.33%;
+}
+.calendar-ampm {
+    width: 33.33%;
+}
+
+
+
+/* Selected Date Range Highlight Color */
+.simpicker-calendar .in-range {
+    background: #e0f0ff;
+}
+.simpicker-calendar .range-start,
+.simpicker-calendar .range-end {
+    background: #007bff;
+    color: #fff;
+}
+
+
+/* Disabled Days */
+.simpicker-calendar .day.disabled {
+    /*color: #ccc;*/
+    /*background: #f9f9f9;*/
+    position: relative;
+    cursor: not-allowed;
+    pointer-events: none;
+    /*opacity: 0.7;*/
+}
+.simpicker-calendar .simpicker-disabled-icon {
+    position: absolute;
+    top: 2px;
+    right: 3px;
+    pointer-events: none;
+    z-index: 2;
+    opacity: 0.4;
+}
+.simpicker-calendar .simpicker-disabled-date {
+    opacity: 0.7;
+}
+
+
+/* Highlight Weekend */
+.simpicker-calendar .weekday.weekend {
+    color: #e53935 !important;
+    font-weight: bold;
+}
+.simpicker-calendar .day.weekend {
+    color: #e53935 !important;
+    font-weight: bold;
+}
+
+
+/* Calendar Popup Animation*/
+.dropdown-anim {
+    opacity: 0;
+    transform: translateY(-20px) scale(0.98);
+    transition: opacity 0.3s ease, transform 0.3s ease;
+}
+
+.dropdown-anim.show {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* ------------------- Dark Mode ------------------- */
+
+.dark .simpicker-popup,
+.dark .simpicker-header select,
+.dark .simpicker-header div,
+.dark .simpicker-time select,
+.dark .simpui-calendar-select,
+.dark .simpui-options {
+    background: #1e1e1e;
+    color: #f3f3f3;
+    border-color: #444;
+}
+
+.dark .simpicker-wrapper input {
+    background: #151515;
+    color: #f3f3f3;
+    border-color: #444;
+}
+
+.dark .simpicker-calendar .day{
+    background: #1e1e1e;
+    color: #f3f3f3;
+    /*border-color: #444;*/
+}
+
+.dark .simpicker-calendar .day:hover,
+.dark .simpicker-calendar .selected {
+    background: #ffffff;
+    color: #000000;
+}
+
+.dark .simpicker-calendar .today {
+    border-color: #f3f3f3;
+}
+
+.dark .simpicker-calendar .weekday {
+    color: #999;
+}
+
+.dark .simpicker-calendar .day.dimmed {
+    opacity: 0.3;
+}
+
+.dark .simpicker-set #resetBtn, .dark .simpicker-set #setBtn {
+    color: #1e1e1e;
+    background: #ffffff;
+}
+
+.dark .simpicker-set #resetBtn:hover, .dark .simpicker-set #setBtn:hover {
+    color: #1e1e1e;
+    background-color: rgba(255, 255, 255, 0.9); /* 90% opaque white */
+}
+
+.dark .simpicker-separator {
+    background: #333;
+}
+
+.dark .nextMonth:hover {
+    background: #2d2d2d !important;
+    border-radius: 5px;
+}
+
+.dark .prevMonth:hover {
+    background: #2d2d2d !important;
+    border-radius: 5px;
+}
+
+/* Select Dropdown */
+.dark .simpui-calendar-select {
+    background: #1e1e1e;
+    border-color: #444;
+}
+
+.dark .simpui-calendar-select-trigger {
+    color: #f3f3f3;
+}
+
+.dark .simpui-options-title {
+    background-color: #2a2a2a;
+    color: #bbb;
+    border-bottom-color: #444;
+}
+
+.dark .simpui-options .simpui-option {
+    color: #f3f3f3;
+}
+
+.dark .simpui-options .simpui-option:hover {
+    background-color: #333;
+}
+
+.dark .simpui-options::-webkit-scrollbar-thumb {
+    background: #555;
+}
+
+/* Range Highlight */
+.dark .simpicker-calendar .in-range {
+    background: #333f4f;
+}
+
+.dark .simpicker-calendar .range-start,
+.dark .simpicker-calendar .range-end {
+    background: #007bff;
+    color: #fff;
+}
+
+/* Disabled days */
+.dark .simpicker-calendar .day.disabled {
+    opacity: 0.4;
+    background: #2a2a2a;
+}
+
+.dark .simpicker-calendar .simpicker-disabled-icon {
+    opacity: 1;
+}
+
+/* Weekend */
+.dark .simpicker-calendar .weekday.weekend,
+.dark .simpicker-calendar .day.weekend {
+    color: #ff6b6b !important;
+}
+
+/* Animation doesn't change for dark mode */

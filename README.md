@@ -7,12 +7,6 @@ No build steps, no frameworks, no headaches.
 
 ---
 
-## 🌐 Demo
-Check out the live demo of SimpUI here:
-https://simpui.reasadazim.com/
-
----
-
 ## ✨ Features
 
 - **Modern, responsive components** that work on any device  
