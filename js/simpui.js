@@ -622,36 +622,38 @@ document.addEventListener("keydown", e => {
 
 
 
-// Toast
-function showToast(title, subtitle) {
-    const container = document.getElementById("toast-container");
+// SimpUI Toast
+function showSimpuiToast(title, subtitle) {
+    const container = document.getElementById("simpui-toast-container");
 
     const toast = document.createElement("div");
-    toast.className = "toast";
+    toast.className = "simpui-toast";
 
     toast.innerHTML = `
-        <div class="toast-content">
-          <div class="toast-title">${title}</div>
-          <div class="toast-subtitle">${subtitle}</div>
+        <div class="simpui-toast-content">
+          <div class="simpui-toast-title">${title}</div>
+          <div class="simpui-toast-subtitle">${subtitle}</div>
         </div>
-        <div class="toast-action">
-          <button class="simpui-btn toast-action-btn sm" onclick="undoToast(this)">Undo</button>
+        <div class="simpui-toast-action">
+          <button class="simpui-btn simpui-toast-action-btn sm" onclick="undoSimpuiToast(this)">✕</button>
         </div>
-      `;
+    `;
 
     container.appendChild(toast);
 
     setTimeout(() => {
-        toast.style.animation = "fadeOut 0.3s ease forwards";
+        toast.style.animation = "simpui-fadeOut 0.3s ease forwards";
         toast.addEventListener("animationend", () => toast.remove());
     }, 3000);
 }
 
-function undoToast(button) {
-    const toast = button.closest(".toast");
-    alert("Undo clicked!");
+function undoSimpuiToast(button) {
+    const toast = button.closest(".simpui-toast");
+    // alert("Undo clicked!");
     toast.remove();
 }
+
+
 
 // Toggle dark mode
 document.querySelectorAll('.toggle-dark-btn').forEach(btn => {

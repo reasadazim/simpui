@@ -887,14 +887,14 @@ body{
 
 
 /* Toast */
-#toast-container {
+#simpui-toast-container {
     position: fixed;
     bottom: 20px;
     right: 20px;
     z-index: 1000;
 }
 
-.toast {
+.simpui-toast {
     background-color: #fff;
     border: 1px solid var(--simpui-input-border);
     border-radius: 10px;
@@ -905,42 +905,43 @@ body{
     justify-content: space-between;
     align-items: flex-start;
     max-width: 360px;
-    animation: slideIn 0.3s ease forwards;
+    animation: simpui-slideIn 0.3s ease forwards;
 }
 
-.toast-content {
+.simpui-toast-content {
     display: flex;
     flex-direction: column;
     margin-right: 12px;
 }
 
-.toast-title {
+.simpui-toast-title {
     font-weight: bold;
     margin-bottom: 6px;
     font-size: 13px;
     color: #000;
 }
 
-.toast-subtitle {
+.simpui-toast-subtitle {
     font-size: 12px;
     color: #555;
 }
 
-.toast-action-btn {
+.simpui-toast-action-btn {
     font-size: 12px !important;
     background: #212529;
     color: #fff;
     border-color: #212529;
     padding: 2px 6px !important;
-    margin:0px !important;
+    margin: 0px !important;
 }
-.toast-action-btn:hover:not(:disabled) {
+
+.simpui-toast-action-btn:hover:not(:disabled) {
     background: #181a1b;
     border-color: #212529;
     color: #fff;
 }
 
-@keyframes slideIn {
+@keyframes simpui-slideIn {
     from {
         opacity: 0;
         transform: translateX(100%);
@@ -951,12 +952,13 @@ body{
     }
 }
 
-@keyframes fadeOut {
+@keyframes simpui-fadeOut {
     to {
         opacity: 0;
         transform: translateX(100%);
     }
 }
+
 
 
 
@@ -1752,25 +1754,27 @@ span.simpui-badge.subtle.md svg {
 }
 
 /* Toasts */
-.dark .toast {
+.dark .simpui-toast {
     background: #2a2a2a;
     color: #f3f3f3;
 }
-.dark .toast {
+
+.dark .simpui-toast {
     border: 1px solid #444;
 }
-.dark .toast-title,
-.dark .toast-subtitle {
+
+.dark .simpui-toast-title,
+.dark .simpui-toast-subtitle {
     color: #f3f3f3;
 }
 
-.dark .toast-action-btn {
+.dark .simpui-toast-action-btn {
     background: #f8f9fa;
     color: #222;
     border-color: #f8f9fa;
 }
 
-.dark .toast-action-btn:hover:not(:disabled) {
+.dark .simpui-toast-action-btn:hover:not(:disabled) {
     background: #e2e6ea;
     border-color: #f8f9fa;
     color: #222;
