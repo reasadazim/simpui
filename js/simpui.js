@@ -434,67 +434,202 @@ document.addEventListener("DOMContentLoaded", () => {
 
 
 
-    // Modal
-    const simpuiOpenBtn = document.getElementById('simpui-open-modal-btn');
-    const simpuiModalBackdrop = document.getElementById('simpui-modal-backdrop');
-    const simpuiCloseBtn = document.getElementById('simpui-close-modal-btn');
-    const simpuiCancelBtn = document.getElementById('simpui-cancel-btn');
-    const simpuiConfirmBtn = document.getElementById('simpui-confirm-btn');
-    const simpuiDialogPanel = simpuiModalBackdrop?.querySelector('.simpui-dialog-panel');
-
-    function simpuiOpenModal() {
-        if (simpuiModalBackdrop) {
-            simpuiModalBackdrop.style.display = 'flex';
-            document.body.style.overflow = 'hidden';
-            simpuiDialogPanel?.focus();
-        }
-    }
-
-    function simpuiCloseModal() {
-        if (simpuiModalBackdrop) {
-            simpuiModalBackdrop.style.display = 'none';
-            document.body.style.overflow = '';
-            simpuiOpenBtn?.focus();
-        }
-    }
-
-    // Attach event listeners only if the elements exist
-    simpuiOpenBtn?.addEventListener('click', simpuiOpenModal);
-    simpuiCloseBtn?.addEventListener('click', simpuiCloseModal);
-    simpuiCancelBtn?.addEventListener('click', simpuiCloseModal);
-    simpuiConfirmBtn?.addEventListener('click', () => {
-        alert('Confirmed!');
-        simpuiCloseModal();
-    });
-
-    // Close on backdrop click
-    simpuiModalBackdrop?.addEventListener('mousedown', function(e) {
-        if (e.target === simpuiModalBackdrop) {
-            simpuiCloseModal();
-        }
-    });
-
-    // Close on Escape key
-    document.addEventListener('keydown', function(e) {
-        if (simpuiModalBackdrop?.style.display === 'flex' && e.key === 'Escape') {
-            simpuiCloseModal();
-        }
-    });
-
-
-
-
-
-
-
-
-
 
     // Add new functions here...
 
 
 
 });
+
+
+
+
+
+
+
+
+
+// Single Modal
+
+document.addEventListener("DOMContentLoaded", () => {
+    // Open buttons
+    document.querySelectorAll(".modal-open-btn").forEach(openBtn => {
+        openBtn.addEventListener("click", () => {
+            const modalId = openBtn.getAttribute("data-modal");
+            openModal(modalId);
+        });
+    });
+
+    // Close handlers for each modal
+    document.querySelectorAll(".simpui-dialog-backdrop").forEach(modal => {
+        const closeModal = () => {
+            modal.style.display = "none";
+            document.body.style.overflow = "";
+        };
+
+        modal.querySelectorAll(".modal-close-btn, .modal-cancel-btn").forEach(btn => {
+            btn.addEventListener("click", closeModal);
+        });
+
+        modal.querySelector(".modal-confirm-btn")?.addEventListener("click", () => {
+            alert("Confirmed!");
+            closeModal();
+        });
+
+        modal.addEventListener("mousedown", e => {
+            if (e.target === modal) closeModal();
+        });
+
+        document.addEventListener("keydown", e => {
+            if (modal.style.display === "flex" && e.key === "Escape") {
+                closeModal();
+            }
+        });
+    });
+
+    // Programmatic open function
+    window.openModal = function(modalId) {
+        const modal = document.getElementById(modalId);
+        if (modal) {
+            modal.style.display = "flex";
+            document.body.style.overflow = "hidden";
+            modal.querySelector(".simpui-dialog-panel")?.focus();
+        }
+    };
+
+    // Programmatic close function
+    window.closeModal = function(modalId) {
+        const modal = document.getElementById(modalId);
+        if (modal) {
+            modal.style.display = "none";
+            document.body.style.overflow = "";
+        }
+    };
+});
+
+
+
+
+
+
+
+
+
+
+// Multi modal
+
+document.addEventListener("DOMContentLoaded", () => {
+    document.querySelectorAll(".simpui-multimodal-backdrop").forEach(backdrop => {
+        let currentStep = 1;
+        const panels = backdrop.querySelectorAll(".simpui-multimodal-panel");
+        const openBtn = document.querySelector(`[data-open-multimodal="${backdrop.id}"]`);
+
+        function showStep(step) {
+            panels.forEach(panel => {
+                panel.classList.toggle("active", parseInt(panel.dataset.step) === step);
+            });
+        }
+
+        function openModal() {
+            backdrop.style.display = "flex";
+            currentStep = 1;
+            showStep(currentStep);
+            document.body.style.overflow = "hidden";
+        }
+
+        function closeModal() {
+            backdrop.style.display = "none";
+            document.body.style.overflow = "";
+            currentStep = 1;
+            showStep(currentStep);
+        }
+
+        function nextStep() {
+            if (currentStep < panels.length) {
+                currentStep++;
+                showStep(currentStep);
+            }
+        }
+
+        function prevStep() {
+            if (currentStep > 1) {
+                currentStep--;
+                showStep(currentStep);
+            }
+        }
+
+        function confirmModal() {
+            alert("Confirmed!");
+            closeModal();
+        }
+
+        // Open button
+        openBtn?.addEventListener("click", openModal);
+
+        // Backdrop close
+        backdrop.addEventListener("mousedown", e => {
+            if (e.target === backdrop) {
+                closeModal();
+            }
+        });
+
+        // Escape close
+        document.addEventListener("keydown", e => {
+            if (backdrop.style.display === "flex" && e.key === "Escape") {
+                closeModal();
+            }
+        });
+
+        // Panel button bindings
+        panels.forEach(panel => {
+            panel.querySelectorAll("[data-multi-action]").forEach(btn => {
+                const action = btn.getAttribute("data-multi-action");
+                if (action === "close") btn.addEventListener("click", closeModal);
+                if (action === "next") btn.addEventListener("click", nextStep);
+                if (action === "prev") btn.addEventListener("click", prevStep);
+                if (action === "confirm") btn.addEventListener("click", confirmModal);
+            });
+        });
+    });
+});
+
+
+// Open Multimodal Dialogue Using Code (Without Button Click)
+window.simpuiOpenMultimodal = function (modalId) {
+    const backdrop = document.getElementById(modalId);
+    if (!backdrop) return;
+
+    let currentStep = 1;
+    const panels = backdrop.querySelectorAll(".simpui-multimodal-panel");
+
+    function showStep(step) {
+        panels.forEach(panel => {
+            panel.classList.toggle("active", parseInt(panel.dataset.step) === step);
+        });
+    }
+
+    backdrop.style.display = "flex";
+    document.body.style.overflow = "hidden";
+    showStep(currentStep);
+};
+
+
+// Close Multi Modal
+window.simpuiCloseMultimodal = function(modalId) {
+    const backdrop = document.getElementById(modalId);
+    if (!backdrop) return;
+
+    backdrop.style.display = "none";
+    document.body.style.overflow = "";
+
+    // Also reset active step panels if you want:
+    const panels = backdrop.querySelectorAll(".simpui-multimodal-panel");
+    panels.forEach(panel => panel.classList.remove("active"));
+};
+
+
+
+
 
 
 
@@ -550,71 +685,6 @@ if (trigger && card) {
 }
 
 
-
-// Multi modal
-
-const multimodalBackdrop = document.getElementById("simpui-multimodal-backdrop");
-const multimodalPanels = document.querySelectorAll(".simpui-multimodal-panel");
-const multimodalOpenBtn = document.getElementById("simpui-multimodal-open-btn");
-let simpuiMultimodalCurrent = 1;
-
-function simpuiMultimodalOpen() {
-    if (!multimodalBackdrop) return;
-    multimodalBackdrop.style.display = "flex";
-    simpuiMultimodalShowStep(simpuiMultimodalCurrent);
-    document.body.style.overflow = "hidden";
-}
-
-function simpuiMultimodalClose() {
-    if (!multimodalBackdrop) return;
-    multimodalBackdrop.style.display = "none";
-    document.body.style.overflow = "";
-    simpuiMultimodalCurrent = 1;
-    simpuiMultimodalShowStep(simpuiMultimodalCurrent);
-}
-
-function simpuiMultimodalNext() {
-    if (simpuiMultimodalCurrent < multimodalPanels.length) {
-        simpuiMultimodalCurrent++;
-        simpuiMultimodalShowStep(simpuiMultimodalCurrent);
-    }
-}
-
-function simpuiMultimodalPrev() {
-    if (simpuiMultimodalCurrent > 1) {
-        simpuiMultimodalCurrent--;
-        simpuiMultimodalShowStep(simpuiMultimodalCurrent);
-    }
-}
-
-function simpuiMultimodalShowStep(step) {
-    multimodalPanels.forEach(panel => {
-        panel.classList.remove("active");
-        if (parseInt(panel.dataset.step) === step) {
-            panel.classList.add("active");
-        }
-    });
-}
-
-function simpuiMultimodalConfirm() {
-    alert("Confirmed!");
-    simpuiMultimodalClose();
-}
-
-// Attach listeners only if elements exist
-multimodalOpenBtn?.addEventListener("click", simpuiMultimodalOpen);
-
-multimodalBackdrop?.addEventListener("mousedown", e => {
-    if (e.target === multimodalBackdrop) {
-        simpuiMultimodalClose();
-    }
-});
-
-document.addEventListener("keydown", e => {
-    if (multimodalBackdrop?.style.display === "flex" && e.key === "Escape") {
-        simpuiMultimodalClose();
-    }
-});
 
 
 
