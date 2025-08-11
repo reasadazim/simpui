@@ -4,13 +4,14 @@
  * License: GPL-3.0
  * Version: 1.0
  */
+
 :root {
     --simpui-bg: #fff;
     --modal-bg: #fff;
     --modal-fg: #111;
-    --modal-shadow: 0 8px 32px 0 rgba(0,0,0,0.16);
+    --modal-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.16);
     --modal-radius: 0.7rem;
-    --backdrop-bg: rgba(0,0,0,0.5);
+    --backdrop-bg: rgba(0, 0, 0, 0.5);
     --simpui-multimodal-bg: #fff;
     --simpui-multimodal-fg: #111;
     --simpui-multimodal-shadow: 0 8px 32px rgba(0, 0, 0, 0.16);
@@ -23,23 +24,44 @@
     --simpui-text-light: #737373;
     --simpui-placeholder: #a7a7a7;
     --simpui-fileinput-placeholder: #888888;
-
 }
 
-*, *::before, *::after {
+*,
+*::before,
+*::after {
     box-sizing: border-box;
 }
 
-html, body, h1, h2, h3, h4, h5, h6, p, div, span, strong, th, tr, input, select, option, textarea, label{
+html,
+body,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+div,
+span,
+strong,
+th,
+tr,
+input,
+select,
+option,
+textarea,
+label {
     font-family: "Geist", sans-serif;
     font-optical-sizing: auto;
 }
 
-body{
+body {
     background: var(--simpui-bg);
 }
 
+
 /* Base Layout */
+
 .simpui-form {
     font-family: "Geist", sans-serif;
     font-optical-sizing: auto;
@@ -53,6 +75,7 @@ body{
 
 
 /* Form Group */
+
 .simpui-form-group {
     position: relative;
     display: flex;
@@ -62,6 +85,7 @@ body{
 
 
 /* Floating Label */
+
 .simpui-floating-label {
     position: absolute;
     /*top: 50%;*/
@@ -77,8 +101,8 @@ body{
 }
 
 
-
 /* Inputs */
+
 .simpui-input,
 .simpui-textarea {
     width: 100%;
@@ -108,16 +132,15 @@ body{
     box-shadow: 0 0 0 3px rgba(0, 0, 0, 0.10);
 }
 
-.simpui-input:focus + .simpui-floating-label,
-.simpui-input:not(:placeholder-shown) + .simpui-floating-label,
-.simpui-textarea:focus + .simpui-floating-label,
-.simpui-textarea:not(:placeholder-shown) + .simpui-floating-label {
+.simpui-input:focus+.simpui-floating-label,
+.simpui-input:not(:placeholder-shown)+.simpui-floating-label,
+.simpui-textarea:focus+.simpui-floating-label,
+.simpui-textarea:not(:placeholder-shown)+.simpui-floating-label {
     top: -10px;
     left: 12px;
     font-size: 11px;
     color: #333;
 }
-
 
 .simpui-input-wrapper {
     position: relative;
@@ -128,18 +151,22 @@ body{
     top: 50%;
     left: 12px;
     transform: translateY(-50%);
-    width: 16px;   /* smaller width */
-    height: 16px;  /* smaller height */
+    width: 16px;
+    /* smaller width */
+    height: 16px;
+    /* smaller height */
     color: var(--simpui-placeholder);
     pointer-events: none;
 }
 
 .simpui-input-wrapper .simpui-input {
-    padding-left: 40px; /* adjusted padding */
+    padding-left: 40px;
+    /* adjusted padding */
 }
 
 .simpui-input-wrapper .simpui-input-icon {
-    top: calc(50% - 1px); /* slight vertical tweak */
+    top: calc(50% - 1px);
+    /* slight vertical tweak */
 }
 
 .simpui-input-icon-right {
@@ -155,12 +182,13 @@ body{
 
 .simpui-has-icon-right .simpui-input {
     padding-left: 15px;
-    padding-right: 40px; /* add space for the icon */
+    padding-right: 40px;
+    /* add space for the icon */
 }
 
 .simpui-input::placeholder,
 .simpui-textarea::placeholder {
-    color:var(--simpui-placeholder);
+    color: var(--simpui-placeholder);
 }
 
 .simpui-search-icon {
@@ -173,15 +201,13 @@ body{
 }
 
 
-
-
-
 /* File Input */
+
 .simpui-file {
     opacity: 0;
     position: absolute;
     pointer-events: none;
-    box-shadow: 0 1px 4px rgba(0,0,0,0.1);
+    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.1);
 }
 
 .simpui-file-label {
@@ -200,7 +226,9 @@ body{
     background-color: #f1f1f1;
 }
 
+
 /* SimpUI File Input Icon Styles */
+
 .simpui-file-label {
     display: flex;
     align-items: center;
@@ -214,9 +242,11 @@ body{
     height: 20px;
     width: 20px
 }
+
 .simpui-file-label span[id$="-label-text"] {
     display: inline-block;
-    max-width: 200px;    /* Adjust as needed to fit your layout */
+    max-width: 200px;
+    /* Adjust as needed to fit your layout */
     overflow: hidden;
     text-overflow: ellipsis;
     white-space: nowrap;
@@ -224,12 +254,8 @@ body{
 }
 
 
-
-
-
-
-
 /* Error Styles */
+
 .simpui-error {
     color: #d33;
     font-size: 12px;
@@ -237,12 +263,14 @@ body{
     display: none;
 }
 
+
 /* Show error when parent has .has-error */
+
 .simpui-form-group.has-error .simpui-error {
     display: block;
 }
 
-.simpicker-wrapper .has-error{
+.simpicker-wrapper .has-error {
     display: block;
 }
 
@@ -250,19 +278,20 @@ body{
     text-align: center;
 }
 
-.simpui-input-wrapper.has-error + .simpui-error {
+.simpui-input-wrapper.has-error+.simpui-error {
     display: block;
 }
 
 
 /* Required */
-.simpui-required{
-    color:red;
+
+.simpui-required {
+    color: red;
 }
 
 
-
 /* Dropdown */
+
 .simpui-dropdown-wrapper {
     font-family: "Geist", sans-serif;
     font-optical-sizing: auto;
@@ -278,7 +307,7 @@ body{
     border-radius: 0.5rem;
     padding: 10px 15px;
     transition: border 0.3s ease;
-    box-shadow: 0 1px 4px rgba(0,0,0,0.1);
+    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.1);
 }
 
 .simpui-select:hover {
@@ -293,7 +322,7 @@ body{
     color: var(--simpui-placeholder);
 }
 
-.simpui-selected-text.selected{
+.simpui-selected-text.selected {
     color: var(--simpui-text-dim);
 }
 
@@ -313,10 +342,11 @@ body{
     background: #fff;
     border: 1px solid var(--simpui-input-border);
     border-radius: 0.5rem;
-    box-shadow: 0 2px 6px rgba(0,0,0,0.15);
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
     z-index: 10;
     max-height: 0;
-    overflow-y: hidden; /* Changed */
+    overflow-y: hidden;
+    /* Changed */
     opacity: 0;
     transition: all 0.3s ease;
     pointer-events: none;
@@ -324,7 +354,8 @@ body{
 
 .simpui-select.open .simpui-options {
     max-height: 300px;
-    overflow-y: auto; /* Enable scroll */
+    overflow-y: auto;
+    /* Enable scroll */
     opacity: 1;
     pointer-events: auto;
 }
@@ -362,12 +393,6 @@ body{
 }
 
 
-
-
-
-
-
-
 /* Dropdown - With search filter */
 
 .simpui-options-search {
@@ -378,7 +403,8 @@ body{
 
 .simpui-options-input {
     width: 100%;
-    padding: 8px 10px 8px 32px; /* left padding for icon space */
+    padding: 8px 10px 8px 32px;
+    /* left padding for icon space */
     font-size: 14px;
     border: 1px solid var(--simpui-input-border);
     border-radius: 0.375rem;
@@ -405,16 +431,11 @@ body{
 }
 
 
-
-
-
-
-
-
-
-
 /* Multiselect Dropdown */
+
+
 /* Multiselect label with checkbox */
+
 .simpui-options label {
     display: flex;
     align-items: center;
@@ -430,14 +451,6 @@ body{
 }
 
 
-
-
-
-
-
-
-
-
 /* Buttons */
 
 .simpui-btn {
@@ -446,11 +459,7 @@ body{
     justify-content: center;
     border-radius: 6px;
     font-weight: 500;
-    transition:
-            background 0.18s,
-            color 0.18s,
-            border-color 0.18s,
-            box-shadow 0.18s;
+    transition: background 0.18s, color 0.18s, border-color 0.18s, box-shadow 0.18s;
     outline: none;
     border: 1px solid transparent;
     cursor: pointer;
@@ -458,42 +467,49 @@ body{
     font-size: 1rem;
     background: #fff;
     color: #222;
-    box-shadow: 0 2px 8px rgba(0,0,0,0.10);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.10);
     position: relative;
     margin: 0.25rem;
     font-family: "Geist", sans-serif;
     font-optical-sizing: auto;
 }
+
 .simpui-btn:focus {
     border-color: #222;
-    box-shadow: 0 0 0 2px #2222, 0 2px 10px rgba(0,0,0,0.14);
+    box-shadow: 0 0 0 2px #2222, 0 2px 10px rgba(0, 0, 0, 0.14);
 }
+
 .simpui-btn:hover:not(:disabled) {
     background: #e5e7eb;
     color: #111;
     /*border-color: #bbb;*/
-    box-shadow: 0 6px 18px rgba(50,50,80,0.14), 0 1.5px 6px rgba(0,0,0,0.08);
+    box-shadow: 0 6px 18px rgba(50, 50, 80, 0.14), 0 1.5px 6px rgba(0, 0, 0, 0.08);
     filter: brightness(1.04);
 }
+
 .simpui-btn:active:not(:disabled) {
-    box-shadow: 0 2px 6px rgba(50,50,80,0.14);
+    box-shadow: 0 2px 6px rgba(50, 50, 80, 0.14);
 }
+
 .simpui-btn:disabled {
     opacity: 0.5;
     pointer-events: none;
 }
 
+
 /* Bootstrap-like color variants */
+
 .simpui-btn.primary {
     background: #0d6efd;
     color: #fff;
     border-color: #0d6efd;
-    box-shadow: 0 2px 8px rgba(13,110,253,0.13);
+    box-shadow: 0 2px 8px rgba(13, 110, 253, 0.13);
 }
+
 .simpui-btn.primary:hover:not(:disabled) {
     background: #0b5ed7;
     border-color: #0a58ca;
-    box-shadow: 0 6px 18px rgba(13,110,253,0.18), 0 1.5px 6px rgba(0,0,0,0.11);
+    box-shadow: 0 6px 18px rgba(13, 110, 253, 0.18), 0 1.5px 6px rgba(0, 0, 0, 0.11);
     color: #fff;
     filter: brightness(1.08);
 }
@@ -503,6 +519,7 @@ body{
     color: #fff;
     border-color: #6c757d;
 }
+
 .simpui-btn.secondary:hover:not(:disabled) {
     background: #5c636a;
     border-color: #565e64;
@@ -514,6 +531,7 @@ body{
     color: #fff;
     border-color: #198754;
 }
+
 .simpui-btn.success:hover:not(:disabled) {
     background: #157347;
     border-color: #146c43;
@@ -525,6 +543,7 @@ body{
     color: #fff;
     border-color: #0dcaf0;
 }
+
 .simpui-btn.info:hover:not(:disabled) {
     background: #31d2f2;
     border-color: #0dcaf0;
@@ -536,6 +555,7 @@ body{
     color: #222;
     border-color: #ffc107;
 }
+
 .simpui-btn.warning:hover:not(:disabled) {
     background: #ffcd39;
     border-color: #ffc107;
@@ -547,6 +567,7 @@ body{
     color: #fff;
     border-color: #dc3545;
 }
+
 .simpui-btn.danger:hover:not(:disabled) {
     background: #bb2d3b;
     border-color: #dc3545;
@@ -556,8 +577,9 @@ body{
 .simpui-btn.dark {
     border-color: #3f3f46;
     background-color: #27272a;
-    box-shadow: 0 1px 2px rgba(255,255,255,0.05);
+    box-shadow: 0 1px 2px rgba(255, 255, 255, 0.05);
 }
+
 .simpui-btn.dark:hover:not(:disabled) {
     background-color: #3f3f46;
     color: #fff;
@@ -569,20 +591,17 @@ body{
     box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
     transition: background 0.2s;
 }
+
 .simpui-btn.light:hover:not(:disabled) {
     background-color: #f3f3f3;
 }
-
-
-
-
-
 
 .simpui-btn.outline-primary {
     background: transparent;
     color: #0d6efd;
     border-color: #0d6efd;
 }
+
 .simpui-btn.outline-primary:hover:not(:disabled) {
     background: #0d6efd;
     color: #fff;
@@ -594,6 +613,7 @@ body{
     color: #6c757d;
     border-color: #6c757d;
 }
+
 .simpui-btn.outline-secondary:hover:not(:disabled) {
     background: #6c757d;
     color: #fff;
@@ -605,6 +625,7 @@ body{
     color: #198754;
     border-color: #198754;
 }
+
 .simpui-btn.outline-success:hover:not(:disabled) {
     background: #198754;
     color: #fff;
@@ -616,6 +637,7 @@ body{
     color: #0dcaf0;
     border-color: #0dcaf0;
 }
+
 .simpui-btn.outline-info:hover:not(:disabled) {
     background: #0dcaf0;
     color: #fff;
@@ -627,6 +649,7 @@ body{
     color: #ffc107;
     border-color: #ffc107;
 }
+
 .simpui-btn.outline-warning:hover:not(:disabled) {
     background: #ffc107;
     color: #222;
@@ -638,6 +661,7 @@ body{
     color: #dc3545;
     border-color: #dc3545;
 }
+
 .simpui-btn.outline-danger:hover:not(:disabled) {
     background: #dc3545;
     color: #fff;
@@ -649,6 +673,7 @@ body{
     color: #191B1C;
     border-color: #191B1C;
 }
+
 .simpui-btn.outline-dark:hover:not(:disabled) {
     background: #212529;
     color: #fff;
@@ -660,14 +685,17 @@ body{
     color: #f8f9fa;
     border-color: #f8f9fa;
 }
+
 .simpui-btn.outline-light:hover:not(:disabled) {
     background: #f8f9fa;
     color: #222;
     border-color: #f8f9fa;
 }
+
 .icon-left-btn svg {
     margin-right: 10px;
 }
+
 .icon-right-btn svg {
     margin-left: 10px;
 }
@@ -675,23 +703,36 @@ body{
 .iconOnlybtn {
     padding: 0.25rem 0.25rem !important;
 }
-.iconOnlybtn svg{
+
+.iconOnlybtn svg {
     width: 16px;
     height: 16px;
 }
 
 
 /* Sizes */
-.simpui-btn.sm { padding: 0.25rem 0.75rem; font-size: 0.875rem; border-radius: 0.4rem; }
-.simpui-btn.md { padding: 0.5rem 1.25rem; font-size: 1rem; border-radius: 0.6rem;}
-.simpui-btn.lg { padding: 0.75rem 1.5rem; font-size: 1.125rem; border-radius: 0.7rem;}
-.full-width{ width: 100%; }
 
+.simpui-btn.sm {
+    padding: 0.25rem 0.75rem;
+    font-size: 0.875rem;
+    border-radius: 0.4rem;
+}
 
+.simpui-btn.md {
+    padding: 0.5rem 1.25rem;
+    font-size: 1rem;
+    border-radius: 0.6rem;
+}
 
+.simpui-btn.lg {
+    padding: 0.75rem 1.5rem;
+    font-size: 1.125rem;
+    border-radius: 0.7rem;
+}
 
-
-
+.full-width {
+    width: 100%;
+}
 
 
 /* Lightbtn */
@@ -711,30 +752,55 @@ body{
     margin: 0.25rem;
     font-family: "Geist", sans-serif;
     font-optical-sizing: auto;
-    transition:
-            background 0.18s,
-            color 0.18s,
-            border-color 0.18s,
-            box-shadow 0.18s;
+    transition: background 0.18s, color 0.18s, border-color 0.18s, box-shadow 0.18s;
 }
+
 .lightbtn:hover:not(:disabled) {
     background-color: #F5F5F5;
 }
-.lightbtn.sm { padding: 0.25rem 0.25rem; font-size: 0.875rem; border-radius: 0.4rem; }
-.lightbtn.md { padding: 0.5rem 0.5rem; font-size: 1rem; border-radius: 0.6rem;}
-.lightbtn.lg { padding: 0.75rem 75rem; font-size: 1.125rem; border-radius: 0.7rem;}
+
+.lightbtn.sm {
+    padding: 0.25rem 0.25rem;
+    font-size: 0.875rem;
+    border-radius: 0.4rem;
+}
+
+.lightbtn.md {
+    padding: 0.5rem 0.5rem;
+    font-size: 1rem;
+    border-radius: 0.6rem;
+}
+
+.lightbtn.lg {
+    padding: 0.75rem 75rem;
+    font-size: 1.125rem;
+    border-radius: 0.7rem;
+}
+
 
 /* Lightbtn Text*/
-.text.lightbtn.sm { padding: 0.25rem 0.75rem; font-size: 0.875rem; border-radius: 0.4rem; }
-.text.lightbtn.md { padding: 0.5rem 1.25rem; font-size: 1rem; border-radius: 0.6rem;}
-.text.lightbtn.lg { padding: 0.75rem 1.5rem; font-size: 1.125rem; border-radius: 0.7rem;}
 
+.text.lightbtn.sm {
+    padding: 0.25rem 0.75rem;
+    font-size: 0.875rem;
+    border-radius: 0.4rem;
+}
 
+.text.lightbtn.md {
+    padding: 0.5rem 1.25rem;
+    font-size: 1rem;
+    border-radius: 0.6rem;
+}
 
-
+.text.lightbtn.lg {
+    padding: 0.75rem 1.5rem;
+    font-size: 1.125rem;
+    border-radius: 0.7rem;
+}
 
 
 /* Checkbox */
+
 .simpui-checkbox {
     display: inline-flex;
     align-items: center;
@@ -767,17 +833,17 @@ body{
     flex-shrink: 0;
 }
 
-.simpui-checkbox input[type="checkbox"]:checked + .simpui-box {
+.simpui-checkbox input[type="checkbox"]:checked+.simpui-box {
     border-color: #000;
     background: #000;
 }
 
-.simpui-checkbox input[type="checkbox"]:not(:disabled):hover + .simpui-box {
+.simpui-checkbox input[type="checkbox"]:not(:disabled):hover+.simpui-box {
     border-color: #000;
     box-shadow: 0 0 0 2px rgba(0, 0, 0, 0.2);
 }
 
-.simpui-checkbox input[type="checkbox"]:focus + .simpui-box,
+.simpui-checkbox input[type="checkbox"]:focus+.simpui-box,
 .simpui-box.simpui-focus {
     border-color: #000;
     box-shadow: 0 0 0 2px rgba(0, 0, 0, 0.3);
@@ -798,7 +864,7 @@ body{
     transition: border-width 0.2s;
 }
 
-.simpui-checkbox input[type="checkbox"]:checked + .simpui-box::after {
+.simpui-checkbox input[type="checkbox"]:checked+.simpui-box::after {
     display: block;
 }
 
@@ -809,17 +875,15 @@ body{
     margin-bottom: 0.7em;
 }
 
-.simpui-checkbox input[type="checkbox"]:disabled + .simpui-box {
+.simpui-checkbox input[type="checkbox"]:disabled+.simpui-box {
     background: #f4f4f5;
     border-color: #e5e7eb;
 }
 
-.simpui-checkbox input[type="checkbox"]:disabled ~ .simpui-label {
+.simpui-checkbox input[type="checkbox"]:disabled~.simpui-label {
     color: #a1a1aa;
     cursor: not-allowed;
 }
-
-
 
 
 /* OTP */
@@ -830,11 +894,13 @@ body{
     justify-content: center;
     /*margin-top: 2rem;*/
 }
-.simpui-otp-label{
+
+.simpui-otp-label {
     display: flex;
     justify-content: center;
     margin-top: 10px;
 }
+
 .simpui-otp-input {
     width: 2rem;
     height: 2rem;
@@ -844,14 +910,12 @@ body{
     border-radius: 6px;
     transition: border-color 0.2s;
 }
+
 .simpui-otp-input:focus {
     border-color: #b2b2b2;
     outline: none;
     box-shadow: 0 0 0 2px #dadada;
 }
-
-
-
 
 
 /* Radio */
@@ -862,6 +926,7 @@ body{
     /*margin-top: 2rem;*/
     /*justify-content: center;*/
 }
+
 .simpui-radio-label {
     display: flex;
     align-items: center;
@@ -875,6 +940,7 @@ body{
     transition: border-color 0.2s, box-shadow 0.2s;
     user-select: none;
 }
+
 .simpui-radio-input {
     accent-color: #000000;
     /*width: 1.2em;*/
@@ -883,10 +949,8 @@ body{
 }
 
 
-
-
-
 /* Toast */
+
 #simpui-toast-container {
     position: fixed;
     bottom: 20px;
@@ -960,19 +1024,6 @@ body{
 }
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
 /* Modal */
 
 .simpui-dialog-backdrop {
@@ -985,10 +1036,16 @@ body{
     z-index: 1000;
     animation: simpui-fadeIn 0.15s ease;
 }
+
 @keyframes simpui-fadeIn {
-    from { opacity: 0; }
-    to { opacity: 1; }
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
 }
+
 .simpui-dialog-panel {
     background: var(--modal-bg);
     color: var(--modal-fg);
@@ -999,12 +1056,14 @@ body{
     display: flex;
     flex-direction: column;
     position: relative;
-    animation: simpui-panelPop 0.2s cubic-bezier(.4,0,.2,1);
+    animation: simpui-panelPop 0.2s cubic-bezier(.4, 0, .2, 1);
     overflow: hidden;
     border: 1px solid var(--simpui-input-border);
 }
 
+
 /* Fixed Header */
+
 .simpui-dialog-header {
     position: sticky;
     top: 0;
@@ -1019,11 +1078,13 @@ body{
     font-weight: 600;
     margin: 0;
 }
+
 .simpui-dialog-desc {
     font-size: 1rem;
     color: #666;
     margin-bottom: 0.5rem;
 }
+
 .simpui-dialog-close {
     position: absolute;
     top: 1.5rem;
@@ -1035,18 +1096,23 @@ body{
     cursor: pointer;
     transition: color .15s;
 }
+
 .simpui-dialog-close:hover {
     color: #222;
 }
 
+
 /* Scrollable Body */
+
 .simpui-dialog-body {
     flex: 1 1 auto;
     overflow-y: auto;
     padding: 1rem 1.5rem;
 }
 
+
 /* Fixed Footer */
+
 .simpui-dialog-actions {
     position: sticky;
     bottom: 0;
@@ -1062,11 +1128,11 @@ body{
 .simpui-dialog-panel::-webkit-scrollbar {
     width: 8px;
 }
+
 .simpui-dialog-panel::-webkit-scrollbar-thumb {
     background: var(--simpui-input-border);
     border-radius: 4px;
 }
-
 
 @keyframes simpui-panelPop {
     from {
@@ -1078,16 +1144,19 @@ body{
         transform: translateY(0) scale(1);
     }
 }
+
 .simpui-dialog-title {
     font-size: 1.25rem;
     font-weight: 600;
     margin-bottom: 0.5rem;
 }
+
 .simpui-dialog-desc {
     font-size: 1rem;
     color: #666;
     margin-bottom: 1.25rem;
 }
+
 .simpui-dialog-close {
     position: absolute;
     top: 1rem;
@@ -1099,20 +1168,24 @@ body{
     cursor: pointer;
     transition: color .15s;
 }
+
 .simpui-dialog-close:hover {
     color: #222;
 }
+
 .simpui-dialog-actions {
     display: flex;
     gap: 0.5rem;
     justify-content: flex-end;
     /*margin-top: 1rem;*/
 }
+
 .modal-btn-primary {
     background: #212529;
     color: #fff;
     border-color: #212529;
 }
+
 .modal-btn-primary:hover:not(:disabled) {
     background: #181a1b;
     border-color: #212529;
@@ -1124,16 +1197,19 @@ body{
     color: #fff;
     border-color: #212529;
 }
+
 .modal-btn-primary:hover:not(:disabled) {
     background: #181a1b;
     border-color: #212529;
     color: #fff;
 }
+
 .modal-btn-secondary {
     background: transparent;
     color: #191B1C;
     border-color: var(--simpui-input-border);
 }
+
 .modal-btn-secondary:hover:not(:disabled) {
     background: #e2e6ea;
     color: #191B1C;
@@ -1142,24 +1218,22 @@ body{
 
 
 /* Sizes */
+
 .simpui-dialog-panel.sm {
     max-width: 320px;
 }
+
 .simpui-dialog-panel.md {
     max-width: 400px;
 }
+
 .simpui-dialog-panel.lg {
     max-width: 640px;
 }
+
 .simpui-dialog-panel.xl {
     max-width: 800px;
 }
-
-
-
-
-
-
 
 
 /*  Multi Modal  */
@@ -1172,7 +1246,7 @@ body{
     align-items: center;
     justify-content: center;
     z-index: 1000;
-    border: 1px solid var(--simpui-input-border);
+    /* border: 1px solid var(--simpui-input-border); */
 }
 
 .simpui-multimodal-panel {
@@ -1189,11 +1263,24 @@ body{
     animation: simpui-multimodal-panelPop 0.2s ease;
 }
 
+
 /* Sizes */
-.simpui-multimodal-panel.sm { max-width: 320px; }
-.simpui-multimodal-panel.md { max-width: 400px; }
-.simpui-multimodal-panel.lg { max-width: 640px; }
-.simpui-multimodal-panel.xl { max-width: 800px; }
+
+.simpui-multimodal-panel.sm {
+    max-width: 320px;
+}
+
+.simpui-multimodal-panel.md {
+    max-width: 400px;
+}
+
+.simpui-multimodal-panel.lg {
+    max-width: 640px;
+}
+
+.simpui-multimodal-panel.xl {
+    max-width: 800px;
+}
 
 .simpui-multimodal-panel.active {
     display: flex;
@@ -1264,18 +1351,21 @@ body{
     gap: 0.5rem;
 }
 
+
 /* Optional Scrollbar Styling */
+
 .simpui-multimodal-body::-webkit-scrollbar {
     width: 8px;
 }
+
 .simpui-multimodal-body::-webkit-scrollbar-thumb {
     background: var(--simpui-input-border);
     border-radius: 4px;
 }
 
 
-
 /* Hover Card */
+
 .hover-card-wrapper {
     position: relative;
     display: inline-block;
@@ -1337,14 +1427,22 @@ body{
 }
 
 
-
-
-
-
 /* Dropdown Button */
-.simpui-dropdown-btn.sm { font-size: 0.875rem; border-radius: 0.4rem; }
-.simpui-dropdown-btn.md { font-size: 1rem; border-radius: 0.6rem; }
-.simpui-dropdown-btn.lg { font-size: 1.125rem; border-radius: 0.7rem; }
+
+.simpui-dropdown-btn.sm {
+    font-size: 0.875rem;
+    border-radius: 0.4rem;
+}
+
+.simpui-dropdown-btn.md {
+    font-size: 1rem;
+    border-radius: 0.6rem;
+}
+
+.simpui-dropdown-btn.lg {
+    font-size: 1.125rem;
+    border-radius: 0.7rem;
+}
 
 .simpui-dropdown-button {
     display: inline-flex;
@@ -1352,7 +1450,7 @@ body{
     border: 1px solid #ddd;
     background-color: white;
     overflow: hidden;
-    box-shadow: 0 1px 2px rgba(0,0,0,0.05);
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
 }
 
 .simpui-dropdown-button .simpui-dropdown-button-main {
@@ -1362,15 +1460,36 @@ body{
     cursor: pointer;
 }
 
-.simpui-dropdown-btn.sm .simpui-dropdown-button-main { padding: 0.25rem 0.75rem; border-right: 1px solid #ddd; }
-.simpui-dropdown-btn.md .simpui-dropdown-button-main { padding: 0.5rem 0.8rem; border-right: 1px solid #ddd; }
-.simpui-dropdown-btn.lg .simpui-dropdown-button-main { padding: 0.75rem 1.1rem; border-right: 1px solid #ddd; }
+.simpui-dropdown-btn.sm .simpui-dropdown-button-main {
+    padding: 0.25rem 0.75rem;
+    border-right: 1px solid #ddd;
+}
 
-.simpui-dropdown-button .simpui-dropdown-button-main:hover { background-color: #f3f4f6; }
+.simpui-dropdown-btn.md .simpui-dropdown-button-main {
+    padding: 0.5rem 0.8rem;
+    border-right: 1px solid #ddd;
+}
 
-.simpui-dropdown-button.sm .simpui-dropdown-button-arrow { padding: 0.13rem 0.25rem; }
-.simpui-dropdown-button.md .simpui-dropdown-button-arrow { padding: 0.45rem 0.45rem; }
-.simpui-dropdown-button.lg .simpui-dropdown-button-arrow { padding: 0.77rem 0.77rem; }
+.simpui-dropdown-btn.lg .simpui-dropdown-button-main {
+    padding: 0.75rem 1.1rem;
+    border-right: 1px solid #ddd;
+}
+
+.simpui-dropdown-button .simpui-dropdown-button-main:hover {
+    background-color: #f3f4f6;
+}
+
+.simpui-dropdown-button.sm .simpui-dropdown-button-arrow {
+    padding: 0.13rem 0.25rem;
+}
+
+.simpui-dropdown-button.md .simpui-dropdown-button-arrow {
+    padding: 0.45rem 0.45rem;
+}
+
+.simpui-dropdown-button.lg .simpui-dropdown-button-arrow {
+    padding: 0.77rem 0.77rem;
+}
 
 .simpui-dropdown-button .simpui-dropdown-button-arrow {
     cursor: pointer;
@@ -1378,11 +1497,24 @@ body{
     align-items: center;
 }
 
-.simpui-dropdown-button .simpui-dropdown-button-arrow:hover { background-color: #f3f4f6; }
+.simpui-dropdown-button .simpui-dropdown-button-arrow:hover {
+    background-color: #f3f4f6;
+}
 
-.simpui-dropdown-btn.sm .icon { width: 14px; height: 14px; }
-.simpui-dropdown-btn.md .icon { width: 16px; height: 16px; }
-.simpui-dropdown-btn.lg .icon { width: 20px; height: 20px; }
+.simpui-dropdown-btn.sm .icon {
+    width: 14px;
+    height: 14px;
+}
+
+.simpui-dropdown-btn.md .icon {
+    width: 16px;
+    height: 16px;
+}
+
+.simpui-dropdown-btn.lg .icon {
+    width: 20px;
+    height: 20px;
+}
 
 .icon {
     background-size: contain;
@@ -1406,8 +1538,10 @@ body{
 
 .dropdown-menu {
     position: absolute;
-    right: 0;               /* 👈 Align to the right */
-    left: auto;             /* 👈 Prevent left alignment */
+    right: 0;
+    /* 👈 Align to the right */
+    left: auto;
+    /* 👈 Prevent left alignment */
     background-color: white;
     border: 1px solid #ddd;
     border-radius: 6px;
@@ -1438,24 +1572,21 @@ body{
     background-color: #f3f4f6;
 }
 
-.dropdown-menu-sm .dropdown-menu{ font-size: 0.875rem; }
-.dropdown-menu-md .dropdown-menu{ font-size: 1rem; }
-.dropdown-menu-lg .dropdown-menu{ font-size: 1.125rem; }
+.dropdown-menu-sm .dropdown-menu {
+    font-size: 0.875rem;
+}
 
+.dropdown-menu-md .dropdown-menu {
+    font-size: 1rem;
+}
 
-
-
-
-
-
-
-
-
-
-
+.dropdown-menu-lg .dropdown-menu {
+    font-size: 1.125rem;
+}
 
 
 /* Option button */
+
 .simpui-option-button-wrapper {
     position: relative;
     display: inline-block;
@@ -1474,7 +1605,9 @@ body{
     background-color: #f3f4f6;
 }
 
+
 /* Sizes */
+
 .simpui-option-button-sm {
     font-size: 0.875rem;
     padding: 0.25rem 0.75rem;
@@ -1490,7 +1623,9 @@ body{
     padding: 0.75rem 1.25rem;
 }
 
+
 /* Dropdown Menu */
+
 .simpui-option-button-menu {
     position: absolute;
     right: 0;
@@ -1525,24 +1660,25 @@ body{
     background-color: #f3f4f6;
 }
 
-.option-menu-sm{ font-size: 0.875rem; }
-.option-menu-md{ font-size: 1rem; }
-.option-menu-lg{ font-size: 1.125rem; }
+.option-menu-sm {
+    font-size: 0.875rem;
+}
 
-#toggleDarkModeBtn{
+.option-menu-md {
+    font-size: 1rem;
+}
+
+.option-menu-lg {
+    font-size: 1.125rem;
+}
+
+#toggleDarkModeBtn {
     cursor: pointer;
 }
 
 
-
-
-
-
-
-
-
-
 /* Badges */
+
 .simpui-badge {
     display: inline-flex;
     align-items: center;
@@ -1557,43 +1693,127 @@ body{
     border: 1px solid transparent;
 }
 
+
 /* Solid variants */
-.simpui-badge.primary   { background: #0d6efd; color: #fff; }
-.simpui-badge.secondary { background: #6c757d; color: #fff; }
-.simpui-badge.success   { background: #198754; color: #fff; }
-.simpui-badge.danger    { background: #dc3545; color: #fff; }
-.simpui-badge.warning   { background: #ffc107; color: #222; }
-.simpui-badge.info      { background: #0dcaf0; color: #fff; }
-.simpui-badge.dark      { background: #27272a; color: #fff; }
-.simpui-badge.light     { background: #f8f9fa; color: #222; border: 1px solid #e5e7eb; }
+
+.simpui-badge.primary {
+    background: #0d6efd;
+    color: #fff;
+}
+
+.simpui-badge.secondary {
+    background: #6c757d;
+    color: #fff;
+}
+
+.simpui-badge.success {
+    background: #198754;
+    color: #fff;
+}
+
+.simpui-badge.danger {
+    background: #dc3545;
+    color: #fff;
+}
+
+.simpui-badge.warning {
+    background: #ffc107;
+    color: #222;
+}
+
+.simpui-badge.info {
+    background: #0dcaf0;
+    color: #fff;
+}
+
+.simpui-badge.dark {
+    background: #27272a;
+    color: #fff;
+}
+
+.simpui-badge.light {
+    background: #f8f9fa;
+    color: #222;
+    border: 1px solid #e5e7eb;
+}
+
 
 /* Outline variants */
+
 .simpui-badge.outline {
     background: transparent;
     border: 1px solid currentColor;
 }
-.simpui-badge.outline.primary   { color: #0d6efd; border-color: #0d6efd; }
-.simpui-badge.outline.secondary { color: #6c757d; border-color: #6c757d; }
-.simpui-badge.outline.success   { color: #198754; border-color: #198754; }
-.simpui-badge.outline.danger    { color: #dc3545; border-color: #dc3545; }
-.simpui-badge.outline.warning   { color: #ffc107; border-color: #ffc107; }
-.simpui-badge.outline.info      { color: #0dcaf0; border-color: #0dcaf0; }
-.simpui-badge.outline.dark      { color: #27272a; border-color: #27272a; }
-.simpui-badge.outline.light     { color: #f8f9fa; border-color: #e5e7eb; }
+
+.simpui-badge.outline.primary {
+    color: #0d6efd;
+    border-color: #0d6efd;
+}
+
+.simpui-badge.outline.secondary {
+    color: #6c757d;
+    border-color: #6c757d;
+}
+
+.simpui-badge.outline.success {
+    color: #198754;
+    border-color: #198754;
+}
+
+.simpui-badge.outline.danger {
+    color: #dc3545;
+    border-color: #dc3545;
+}
+
+.simpui-badge.outline.warning {
+    color: #ffc107;
+    border-color: #ffc107;
+}
+
+.simpui-badge.outline.info {
+    color: #0dcaf0;
+    border-color: #0dcaf0;
+}
+
+.simpui-badge.outline.dark {
+    color: #27272a;
+    border-color: #27272a;
+}
+
+.simpui-badge.outline.light {
+    color: #f8f9fa;
+    border-color: #e5e7eb;
+}
+
 
 /* Subtle variant */
+
 .simpui-badge.subtle {
-    background: rgba(0,0,0,0.05);
+    background: rgba(0, 0, 0, 0.05);
     color: var(--simpui-text-dim);
 }
 
 
 /* Sizes */
-.simpui-badge.sm { font-size: 0.65rem; padding: 0.15rem 0.5rem; }
-.simpui-badge.md { font-size: 0.75rem; padding: 0.25rem 0.625rem; }
-.simpui-badge.lg { font-size: 0.875rem; padding: 0.35rem 0.75rem; }
+
+.simpui-badge.sm {
+    font-size: 0.65rem;
+    padding: 0.15rem 0.5rem;
+}
+
+.simpui-badge.md {
+    font-size: 0.75rem;
+    padding: 0.25rem 0.625rem;
+}
+
+.simpui-badge.lg {
+    font-size: 0.875rem;
+    padding: 0.35rem 0.75rem;
+}
+
 
 /* Dismiss button */
+
 .simpui-badge .simpui-badge-close {
     border: none;
     background: transparent;
@@ -1603,6 +1823,7 @@ body{
     cursor: pointer;
     padding: 0;
 }
+
 .simpui-badge .simpui-badge-close:hover {
     opacity: 0.7;
 }
@@ -1610,23 +1831,6 @@ body{
 span.simpui-badge.subtle.md svg {
     width: 10px;
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 /* ------------------- Dark Mode ------------------- */
@@ -1643,10 +1847,12 @@ span.simpui-badge.subtle.md svg {
     --simpui-multimodal-bg: #2a2a2a;
     --simpui-multimodal-fg: #f9f9f9;
     --simpui-multimodal-backdrop-bg: rgba(0, 0, 0, 0.7);
-    --simpui-placeholder:#7d7d7d;
+    --simpui-placeholder: #7d7d7d;
 }
 
+
 /* Form Elements */
+
 .dark .simpui-input,
 .dark .simpui-textarea,
 .dark .simpui-select,
@@ -1661,20 +1867,29 @@ span.simpui-badge.subtle.md svg {
     box-shadow: 0 0 0 3px rgba(255, 255, 255, 0.1);
 }
 
-.dark .simpui-options-search{
+.dark .simpui-options-search {
     border-color: #444;
 }
 
+
 /*.dark .simpui-input::placeholder,*/
+
+
 /*.dark .simpui-textarea::placeholder {*/
+
+
 /*    color: #aaa;*/
+
+
 /*}*/
 
 .dark .simpui-search-icon,
 .dark .simpui-chevron path {
-    stroke:var(--simpui-placeholder);
+    stroke: var(--simpui-placeholder);
 }
-.dark .simpui-input-icon, .dark .simpui-input-icon-right{
+
+.dark .simpui-input-icon,
+.dark .simpui-input-icon-right {
     color: var(--simpui-placeholder);
 }
 
@@ -1694,7 +1909,9 @@ span.simpui-badge.subtle.md svg {
     box-shadow: 0 0 0 3px rgba(255, 255, 255, 0.1);
 }
 
+
 /* Select Dropdown */
+
 .dark .simpui-select {
     background: var(--input-bg);
     color: #f3f3f3;
@@ -1716,7 +1933,9 @@ span.simpui-badge.subtle.md svg {
     background: var(--simpui-text-dim);
 }
 
+
 /* File Upload */
+
 .dark .simpui-file-label {
     background: var(--input-bg);
     border-color: #444;
@@ -1729,31 +1948,36 @@ span.simpui-badge.subtle.md svg {
 
 
 /* Checkbox */
+
 .dark .simpui-box {
     background: #2a2a2a;
     border-color: #555;
 }
+
 .dark .simpui-box::after {
     border: solid #000000;
     border-width: 0 0.15em 0.15em 0;
 }
-.dark .simpui-checkbox input[type="checkbox"]:checked + .simpui-box {
+
+.dark .simpui-checkbox input[type="checkbox"]:checked+.simpui-box {
     border-color: #fff;
     background: #fff;
 }
 
-.dark .simpui-checkbox input[type="checkbox"]:not(:disabled):hover + .simpui-box {
+.dark .simpui-checkbox input[type="checkbox"]:not(:disabled):hover+.simpui-box {
     border-color: #fff;
     box-shadow: 0 0 0 2px rgba(255, 255, 255, 0.2);
 }
 
-.dark .simpui-checkbox input[type="checkbox"]:focus + .simpui-box,
+.dark .simpui-checkbox input[type="checkbox"]:focus+.simpui-box,
 .dark .simpui-box.simpui-focus {
     border-color: #fff;
     box-shadow: 0 0 0 2px rgba(255, 255, 255, 0.3);
 }
 
+
 /* Toasts */
+
 .dark .simpui-toast {
     background: #2a2a2a;
     color: #f3f3f3;
@@ -1780,7 +2004,9 @@ span.simpui-badge.subtle.md svg {
     color: #222;
 }
 
+
 /* Modal */
+
 .dark .simpui-dialog-panel,
 .dark .simpui-multimodal-panel {
     background: #0A0A0A;
@@ -1798,37 +2024,47 @@ span.simpui-badge.subtle.md svg {
     color: var(--modal-fg);
     border: none;
 }
-.dark .simpui-dialog-body, .dark .simpui-multimodal-body {
+
+.dark .simpui-dialog-body,
+.dark .simpui-multimodal-body {
     border-top: 1px solid #444;
     border-bottom: 1px solid #444;
 }
+
 .dark .modal-btn-primary {
     background: #ffffff !important;
     color: #191B1C !important;
     border-color: var(--simpui-input-border) !important;
 }
+
 .dark .modal-btn-primary:hover:not(:disabled) {
     background: #e2e6ea !important;
     color: #191B1C !important;
     border-color: var(--simpui-input-border) !important;
 }
+
 .dark .modal-btn-secondary {
     background: transparent;
     color: #ffffff;
     border-color: var(--simpui-input-border);
 }
+
 .dark .modal-btn-secondary:hover:not(:disabled) {
     background: #333333;
     color: #ffffff;
     border-color: var(--simpui-input-border);
 }
 
+
 /* Error Messages */
+
 .dark .simpui-error {
     color: #ff6b6b;
 }
 
+
 /* Buttons */
+
 .dark .simpui-btn .light,
 .dark .simpui-btn .light:hover,
 .dark .simpui-btn .light:focus,
@@ -1836,7 +2072,9 @@ span.simpui-badge.subtle.md svg {
     color: #f3f3f3;
 }
 
+
 /* Dropdown/Select */
+
 .dark .simpui-select-trigger,
 .dark .simpui-options-title,
 .dark .simpui-options span,
@@ -1852,11 +2090,14 @@ span.simpui-badge.subtle.md svg {
     background: #494949;
 }
 
-.dark .simpui-options span:hover, .dark .simpui-options label:hover{
+.dark .simpui-options span:hover,
+.dark .simpui-options label:hover {
     background-color: #0A0A0A;
 }
 
-.dark .simpui-select-trigger, .dark .simpui-input::placeholder, .btn .simpui-textarea::placeholder{
+.dark .simpui-select-trigger,
+.dark .simpui-input::placeholder,
+.btn .simpui-textarea::placeholder {
     color: var(--simpui-placeholder);
 }
 
@@ -1866,6 +2107,7 @@ span.simpui-badge.subtle.md svg {
 
 
 /* Modals & Multimodals */
+
 .dark .simpui-dialog-title,
 .dark .simpui-dialog-desc,
 .dark .simpui-dialog-close,
@@ -1875,23 +2117,25 @@ span.simpui-badge.subtle.md svg {
     color: #f3f3f3;
 }
 
-.dark .simpui-dialog-close{
+.dark .simpui-dialog-close {
     color: #717171;
 }
 
-.dark .simpui-dialog-close:hover{
+.dark .simpui-dialog-close:hover {
     color: #f3f3f3;
 }
 
-.dark .simpui-multimodal-close{
+.dark .simpui-multimodal-close {
     color: #717171;
 }
 
-.dark .simpui-multimodal-close:hover{
+.dark .simpui-multimodal-close:hover {
     color: #f3f3f3;
 }
+
 
 /* Label */
+
 .dark .simpui-checkbox,
 .dark .simpui-label,
 .dark .simpui-checkbox .simpui-label,
@@ -1901,24 +2145,28 @@ span.simpui-badge.subtle.md svg {
     color: var(--simpui-text-dim);
 }
 
+
 /* File upload filename text */
+
 .dark .simpui-file-label span[id$="-label-text"] {
     color: var(--simpui-placeholder);
 }
 
 .dark .simpui-otp-input {
-    background: var(--simpui-bg);;
+    background: var(--simpui-bg);
+    ;
     color: #f3f3f3;
     border-color: #444;
 }
+
 .dark .simpui-otp-input:focus {
     border-color: #555;
     box-shadow: 0 0 0 3px rgba(255, 255, 255, 0.1);
 }
 
 
-
 /* Hover Card */
+
 .dark .hover-card {
     background-color: #27272a;
     border-color: #3f3f46;
@@ -1934,21 +2182,20 @@ span.simpui-badge.subtle.md svg {
 }
 
 
-
-
-
-
 /* Dropdown Button */
+
 .dark {
     background: #18181b;
     color: #e5e7eb;
 }
 
+
 /* Button */
+
 .dark .simpui-dropdown-button {
     border-color: #3f3f46;
     background-color: #27272a;
-    box-shadow: 0 1px 2px rgba(255,255,255,0.05);
+    box-shadow: 0 1px 2px rgba(255, 255, 255, 0.05);
 }
 
 .dark .simpui-dropdown-button .simpui-dropdown-button-main:hover,
@@ -1959,14 +2206,18 @@ span.simpui-badge.subtle.md svg {
 .dark .simpui-dropdown-btn.sm .simpui-dropdown-button-main {
     border-right: 1px solid #3f3f46;
 }
+
 .dark .simpui-dropdown-btn.md .simpui-dropdown-button-main {
     border-right: 1px solid #3f3f46;
 }
+
 .dark .simpui-dropdown-btn.lg .simpui-dropdown-button-main {
     border-right: 1px solid #3f3f46;
 }
 
+
 /* Dropdown */
+
 .dark .dropdown-menu {
     background-color: #27272a;
     border-color: #3f3f46;
@@ -1981,18 +2232,13 @@ span.simpui-badge.subtle.md svg {
     background-color: #18181B;
 }
 
+
 /* Icons if needed (if using stroke: currentColor) */
+
 .dark .icon {
-    filter: invert(1); /* Optional: makes SVGs with currentColor visible on dark bg */
+    filter: invert(1);
+    /* Optional: makes SVGs with currentColor visible on dark bg */
 }
-
-
-
-
-
-
-
-
 
 
 /* Option Button */
@@ -2022,53 +2268,81 @@ span.simpui-badge.subtle.md svg {
 }
 
 
-
-
-
-
-
-
-
 /* Lightbtn */
 
 .dark .lightbtn {
     background: transparent;
-    color: #e5e7eb;;
-    transition:
-            background 0.18s,
-            color 0.18s,
-            border-color 0.18s,
-            box-shadow 0.18s;
+    color: #e5e7eb;
+    ;
+    transition: background 0.18s, color 0.18s, border-color 0.18s, box-shadow 0.18s;
 }
+
 .dark .lightbtn:hover:not(:disabled) {
     background-color: #3f3f46;
 }
 
-.dark .lightbtn.sm { padding: 0.25rem 0.25rem; font-size: 0.875rem; border-radius: 0.4rem; }
-.dark .lightbtn.md { padding: 0.5rem 0.5rem; font-size: 1rem; border-radius: 0.6rem;}
-.dark .lightbtn.lg { padding: 0.75rem 75rem; font-size: 1.125rem; border-radius: 0.7rem;}
+.dark .lightbtn.sm {
+    padding: 0.25rem 0.25rem;
+    font-size: 0.875rem;
+    border-radius: 0.4rem;
+}
+
+.dark .lightbtn.md {
+    padding: 0.5rem 0.5rem;
+    font-size: 1rem;
+    border-radius: 0.6rem;
+}
+
+.dark .lightbtn.lg {
+    padding: 0.75rem 75rem;
+    font-size: 1.125rem;
+    border-radius: 0.7rem;
+}
+
 
 /* Lightbtn Text*/
-.text.lightbtn.sm { padding: 0.25rem 0.75rem; font-size: 0.875rem; border-radius: 0.4rem; }
-.text.lightbtn.md { padding: 0.5rem 1.25rem; font-size: 1rem; border-radius: 0.6rem;}
-.text.lightbtn.lg { padding: 0.75rem 1.5rem; font-size: 1.125rem; border-radius: 0.7rem;}
 
+.text.lightbtn.sm {
+    padding: 0.25rem 0.75rem;
+    font-size: 0.875rem;
+    border-radius: 0.4rem;
+}
+
+.text.lightbtn.md {
+    padding: 0.5rem 1.25rem;
+    font-size: 1rem;
+    border-radius: 0.6rem;
+}
+
+.text.lightbtn.lg {
+    padding: 0.75rem 1.5rem;
+    font-size: 1.125rem;
+    border-radius: 0.7rem;
+}
 
 
 /* Badge */
+
 .dark .simpui-badge.light {
     background: transparent;
     color: #e5e7eb;
     border-color: #3f3f46;
 }
+
 .dark .simpui-badge.subtle {
-    background: rgba(255,255,255,0.1);
+    background: rgba(255, 255, 255, 0.1);
     color: #e5e7eb;
 }
-.dark .token.operator, .dark .token.entity, .dark .token.url, .dark .language-css .dark .token.string, .dark .style .token.string {
+
+.dark .token.operator,
+.dark .token.entity,
+.dark .token.url,
+.dark .language-css .dark .token.string,
+.dark .style .token.string {
     color: #9a6e3a;
     background: transparent;
 }
+
 .dark span.simpui-badge.subtle.md svg {
     fill: #fff;
 }
