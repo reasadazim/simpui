@@ -40,21 +40,24 @@ document.addEventListener("DOMContentLoaded", () => {
 
     // Upload input field
 
-    const fileInput = document.getElementById('documents');
-    const label = document.querySelector('.simpui-file-label[for="documents"]');
-    const labelTextSpan = label?.querySelector('#documents-label-text');
-
-    if (fileInput && labelTextSpan) {
-        fileInput.addEventListener("change", function () {
-            let labelText = "No files chosen";
-            if (this.files.length === 1) {
-                labelText = this.files[0].name;
-            } else if (this.files.length > 1) {
-                labelText = `${this.files.length} files selected`;
-            }
-            labelTextSpan.textContent = labelText;
-        });
-    }
+    // Select all file inputs with the `multiple` attribute
+    document.querySelectorAll('input[type="file"][multiple]').forEach(fileInput => {
+        // Find the corresponding label (matching `for` attribute)
+        const label = document.querySelector(`.simpui-file-label[for="${fileInput.id}"]`);
+        const labelTextSpan = label?.querySelector('span[id$="-label-text"]'); // ends with -label-text
+    
+        if (labelTextSpan) {
+            fileInput.addEventListener("change", function () {
+                let labelText = "No files chosen";
+                if (this.files.length === 1) {
+                    labelText = this.files[0].name;
+                } else if (this.files.length > 1) {
+                    labelText = `${this.files.length} files selected`;
+                }
+                labelTextSpan.textContent = labelText;
+            });
+        }
+    });
 
 
 
